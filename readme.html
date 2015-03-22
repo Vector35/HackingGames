@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Hacking Games in a Hacked Game</title>
+<meta name="author" content="(Rusty Wagner, Jordan Wiens)"/>
+
+<link rel="stylesheet" href="./reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="./reveal.js/css/theme/vector35.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+<section id="titleslide"  data-background="#fff" data-background-transition="none">
+
+<h2>Hacking Games <BR>in a <BR>Hacked Game</h2>
+<p>
+<img src="./images/rusty-hs.jpg" alt="rusty-hs.jpg" /> <img src="./images/jordan-hs.jpg" alt="jordan-hs.jpg" />  <BR>
+<img src="./images/wide-white.png" alt="wide-white.png" />
+</p>
+</section>
+
+</section>
+<section>
+<section id="sec-2" >
+
+<h2>BIO</h2>
+<ul class="org-ul">
+<li>CTF junkies
+</li>
+<li>Worked for Raytheon SI
+</li>
+<li>Quit and founded Vector 35 to do "CTF stuff"
+</li>
+</ul>
+</section>
+
+</section>
+<section>
+<section id="sec-3" >
+
+<h2>Is this talk for you?</h2>
+<ul class="org-ul">
+<li class="fragment">Did you played Pwn Adventure 3 during Ghost in the Shellcode this year?
+</li>
+<li class="fragment">Have you ever played a CTF before?
+</li>
+<li class="fragment">Have you heard of CTFs before?
+</li>
+<li class="fragment">Have you played or hacked a video game?
+</li>
+</ul>
+<aside class="notes">
+<p>
+Raise your hands and keep them up if any of the following apply to you.
+If you still have your hand down, just go ahead and leave now, you're probably not going to like this talk.
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-4" >
+
+<h2>Join Us!</h2>
+<ul class="org-ul">
+<li><a href="http://pwnadventure.com/">http://pwnadventure.com/</a>
+</li>
+<li>Download the client for your platform (GPU recommended)
+</li>
+<li>We'll hop online for a demo later on
+</li>
+</ul>
+</section>
+
+</section>
+<section>
+<section id="sec-5" >
+
+<h2>Motivation</h2>
+<aside class="notes">
+<p>
+First, a brief note on the motivation for the talk. We're really talking about
+the growth of both CTFs and gaming together, and how they're related. So first,
+gaming.
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-6" >
+
+<h2>Game Industry Profits</h2>
+<img src="./research/digicapital.png" alt="digicapital.png" />
+<aside class="notes">
+<p>
+Here comes the obligatory "Stuff over time" graphs. In this case, money,
+specifically annual revenue of the video game industry. It's a $90B (or
+maybe more depending on who's doing the counting) industry, and is only
+expected to grow.
+<a href="http://www.gartner.com/newsroom/id/2614915">http://www.gartner.com/newsroom/id/2614915</a> (predicted 100B)
+Digi-Capital<sub>Global</sub><sub>Games</sub><sub>Investment</sub><sub>Review</sub><sub>2015</sub><sub>Executive</sub><sub>Summary</sub>.pdf
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-7" >
+
+<h2>Hacking (in?) the Game Industry</h2>
+<ul class="org-ul">
+<li>As old as the game industry itself
+</li>
+<li>Led to the rise of the demo scene, cracking, trainers, etc
+</li>
+</ul>
+<img src="./images/sanderfocus_animation.gif" alt="sanderfocus_animation.gif" />
+
+</section>
+<section id="sec-7-1" >
+
+<h3>Notable Examples</h3>
+<ul class="org-ul">
+<li>BNET.D (interop)
+</li>
+<li>Glider (interop)
+</li>
+<li>Diablo 3 Auction House (vuln)
+</li>
+</ul>
+<img src="./images/blizzard.jpg" alt="blizzard.jpg" />
+
+</section>
+<section id="sec-7-2" >
+
+<h3>Code-Signing</h3>
+<ul class="org-ul">
+<li>Game platforms as early bellwethers
+</li>
+</ul>
+<p>
+<img src="./images/twilight-hack.jpg" alt="twilight-hack.jpg" /> 
+<img src="./images/nintendo-patch.jpg" alt="nintendo-patch.jpg" />
+</p>
+<aside class="notes">
+<p>
+Discussion of how early video game platforms had incentive for strong DRM and
+were some of the first to implement code-signing. The hacks from those days
+(stealing code-signed objects and repurposing them, for example) remain relevant
+today. Instead of a save game file and video game, it's a signed kernel module
+with a bug for a priv-esc.
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-8"  data-state="chart1">
+
+<h2>Growth of CTFs</h2>
+<canvas id="chart1" width="800" height="600"></canvas>
+<aside class="notes">
+<p>
+Likewise, there's an interesting parallel trend in the CTF world as well. Not
+are CTFs taking off in popularity, but (as Chris Eagle discussed here two years
+ago, there's increasingly real-world spill-over between them.
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-9" >
+
+<h2>Brief History of CTFs</h2>
+<img src="./images/two-toy-soldiers.jpg" alt="two-toy-soldiers.jpg" />
+<aside class="notes">
+</aside>
+
+</section>
+<section id="sec-9-1" >
+
+<h3>Basics</h3>
+<ul class="org-ul">
+<li>Red / Blue / Full Spectrum (A/D)
+</li>
+<li>WarGames
+</li>
+</ul>
+</section>
+
+</section>
+<section>
+<section id="sec-10" >
+
+<h2>Not Just for Fun (Real World impact)</h2>
+</section>
+<section id="sec-10-1" >
+
+<h3>php-cgi</h3>
+<aside class="notes">
+<p>
+Eindbazen
+</p>
+</aside>
+
+</section>
+<section id="sec-10-2" >
+
+<h3>go, go!</h3>
+<aside class="notes">
+<ul class="org-ul">
+<li>Bunyan's Revenge
+</li>
+<li>PlaidCTF 2013
+</li>
+<li>Real GO developers annoying about security
+</li>
+</ul>
+</aside>
+</section>
+<section id="sec-10-3" >
+
+<h3>bzip2</h3>
+</section>
+<section id="sec-10-4" >
+
+<h3>lollerskaters privesc</h3>
+</section>
+<section id="sec-10-5" >
+
+<h3>wireshark 0day</h3>
+</section>
+<section id="sec-10-6" >
+
+<h3>what links?</h3>
+<ul class="org-ul">
+<li class="fragment">codegate CTF
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="fragment"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
+                 <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">restricted_filename</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">restricted</span> = <span style="color: #BFEBBF;">false</span>;
+
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>symbol_conf.kptr_restrict<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">r</span> = realpath<span style="color: #D0BF8F;">(</span>filename, <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span>;
+
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>r != <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+            restricted = strcmp<span style="color: #93E0E3;">(</span>r, restricted_filename<span style="color: #93E0E3;">)</span> == 0;
+            free<span style="color: #93E0E3;">(</span>r<span style="color: #93E0E3;">)</span>;
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
+        <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span>
+
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+</section>
+
+</section>
+<section>
+<section id="sec-11" >
+
+<h2>Free Tools!</h2>
+<img src="./images/freelabor.jpg" alt="freelabor.jpg" />
+<aside class="notes">
+<p>
+Want someone to build a free IDA loader for you if one doesn't exist for the platform you're working on? Just release a CTF challenge on it, and someone will publish it!
+Somewhat kidding about this, but it has happened multiple times. I know multiple people who've released challenges specifically for that, and even as recently as a few months ago, a Nintendo 3DSX loader for IDA was created specifically because of a CTF challenge.
+<a href="https://github.com/0xEBFE/3DSX-IDA-PRO-Loader">https://github.com/0xEBFE/3DSX-IDA-PRO-Loader</a>
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-12" >
+
+<h2>Gaming Challenges in CTFs</h2>
+<p>
+(a most certainly not exhaustive list)
+</p>
+
+</section>
+<section id="sec-12-1" >
+
+<h3>Escape from Minecraft</h3>
+<ul class="org-ul">
+<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
+</li>
+</ul>
+<aside class="notes">
+<ul class="org-ul">
+<li>Date: Jan 25 2014 - Jan 27 2014
+</li>
+</ul>
+</aside>
+
+</section>
+<section id="sec-12-2" >
+
+<h3>Plaid CTF v1</h3>
+<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+<aside class="notes">
+<ul class="org-ul">
+<li>Date: Apr 27, 2012 - Apr 28, 2012
+</li>
+</ul>
+</aside>
+
+</section>
+<section id="sec-12-3" >
+
+<h3>Plaid CTF v2</h3>
+<img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
+<aside class="notes">
+<ul class="org-ul">
+<li>Date: April 19, 2013 - April 20, 2013
+</li>
+</ul>
+</aside>
+
+</section>
+<section id="sec-12-4" >
+
+<h3>Blocky</h3>
+<p>
+<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
+<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
+</p>
+<aside class="notes">
+<ul class="org-ul">
+<li>Date: January 27, 2012
+</li>
+</ul>
+</aside>
+
+</section>
+<section id="sec-12-5" >
+
+<h3>Choose Your Pwn Adventure (Hackquest)</h3>
+<pre  class="example">
+$ nc hackquest.ghostintheshellcode.com 7331
+The 1337 Adventures of an Unknown Hacker
+ 
+What is your name? HACKER
+Welcome, HACKER, to your adventure.
+ 
+You are in your bedroom.  The room is spinning and you are very tired.
+&gt; look
+There is a can of Red Bull here.
+&gt; get can
+You are in your bedroom.  The room is spinning and you are very tired.
+You have a can of Red Bull.
+&gt; use can
+You feel refreshed.
+ 
+You are in your bedroom.  There is a computer on your desk.  To the south is
+the door leading to the rest of the apartment.
+</pre>
+
+<aside class="notes">
+<p>
+Evolved over time. Started as "hackquest", a very simple mud at GitS , turned into a Choose Your Pwn Adventure
+</p>
+</aside>
+
+</section>
+<section id="sec-12-6" >
+
+<h3>Choose Your Pwn Adventure (1)</h3>
+<pre  class="example">
+          ________
+         / ____/ /_  ____  ____  ________     __  ______  __  _______
+        / /   / __ \/ __ \/ __ \/ ___/ _ \   / / / / __ \/ / / / ___/
+       / /___/ / / / /_/ / /_/ (__  )  __/  / /_/ / /_/ / /_/ / /
+       \____/_/ /_/\____/\____/____/\___/   \__, /\____/\__,_/_/
+    ____                    ___       __   /____/        __
+   / __ \_      ______     /   | ____/ /   _____  ____  / /___  __________
+  / /_/ / | /| / / __ \   / /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
+ / ____/| |/ |/ / / / /  / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
+/_/     |__/|__/_/ /_/  /_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/
+
+You hold in your hands a map to a vast treasure under the mountain.  Your
+desire to be rich far outweighs your desire to cooperate with others, so
+you are obviously going on this quest alone, with only your wits and your
+awesome hacker magic to aid you.
+
+You start your quest on a road just outside of town.
+
+You feel a strange forboding feeling eminating from the map, like it has
+an alien magic all of its own.
+
+What do you do?
+1) Follow the road toward the mountain.
+2) Turn around and ask the mage in town what is going on.
+Choice:
+</pre>
+
+</section>
+<section id="sec-12-7" >
+
+<h3>Choose Your Pwn Adventure (2)</h3>
+<video width="960" height="540" controls><source src="gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+</section>
+
+</section>
+<section>
+<section id="sec-13" >
+
+<h2>Pwn Adventure 3</h2>
+</section>
+<section id="sec-13-1" >
+
+<h3>Challenges</h3>
+<ul class="org-ul">
+<li>Unbearable Revenge
+</li>
+<li>Fire and Ice
+</li>
+<li>Overachiever
+</li>
+<li>Until the Cows Come Home
+</li>
+<li>Pirate's Treasure
+</li>
+<li>Blocky's Revenge
+</li>
+<li>Egg Hunt
+</li>
+</ul>
+
+</section>
+<section id="sec-13-2" >
+
+<h3>Hacks</h3>
+</section>
+<section id="sec-13-2-1" >
+
+<h4>LD＿PRELOAD</h4>
+</section>
+<section id="sec-13-2-2" >
+
+<h4><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">Wireshark Dissector</a></h4>
+</section>
+<section id="sec-13-2-3" >
+
+<h4><a href="https://github.com/zku/PwnAdventure3Hacks">PwnAdventure3Hacks Github</a> (DirectX Overlay)</h4>
+</section>
+<section id="sec-13-2-4" >
+
+<h4><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">Samurai PwnHax.cpp</a></h4>
+</section>
+<section id="sec-13-2-5" >
+
+<h4>Quick Patch (DEMO!)</h4>
+</section>
+<section id="sec-13-2-6" >
+
+<h4>DirectX Overlay (DEMO?)</h4>
+
+</section>
+<section id="sec-13-3" >
+
+<h3>Unintended Bugs</h3>
+</section>
+<section id="sec-13-3-1" >
+
+<h4>Instant item steals</h4>
+</section>
+<section id="sec-13-3-2" >
+
+<h4>Bear Assassins (Golden Guns)</h4>
+</section>
+<section id="sec-13-3-3" >
+
+<h4>Cow Level visible (ragdoll fun)</h4>
+</section>
+<section id="sec-13-3-4" >
+
+<h4>An Eggcellent Solution (delete other models)</h4>
+</section>
+<section id="sec-13-3-5" >
+
+<h4>Cheat Engine (sorta&#x2026;)</h4>
+</section>
+
+</section>
+<section>
+<section id="sec-14" >
+
+<h2>CTF Tools</h2>
+<p>
+One of the major premises of this talk is that CTFs are not only influenced by
+real-world events, but, increasingly, contain innovations that impact the real
+world as well.  
+</p>
+</section>
+
+</section>
+<section>
+<section id="sec-15" >
+
+<h2>More CTF Resources</h2>
+<ul class="org-ul">
+<li><a href="https://ctftime.org/">https://ctftime.org/</a> - Events, team scores, writeups
+</li>
+<li><a href="http://captf.com/">http://captf.com/</a> - dump site, mirrors, calendar
+</li>
+<li><a href="http://golden-flags.com/">http://golden-flags.com/</a> - yearly CTF award
+</li>
+<li><a href="http://github.com/ctfs/">http://github.com/ctfs/</a> - best maintained collection of writeups
+</li>
+</ul>
+</section>
+
+</section>
+<section>
+<section id="sec-16" >
+
+<h2>Questions?</h2>
+<ul class="org-ul">
+<li>Slides available at <a href="http://github.com/vector35/">http://github.com/vector35/</a>
+</li>
+<li>Binary Ninja available at <a href="http://binary.ninja/">http://binary.ninja/</a>
+</li>
+<li>Credits:
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-text">Free Labor: https://www.flickr.com/photos/donkeyhotey/5501554002
+</pre>
+</div>
+</section>
+
+</section>
+<section>
+<section id="sec-17"  data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
+
+<h2>RANDOM 1</h2>
+<aside class="notes">
+<p>
+Public Domain: <a href="http://en.wikipedia.org/wiki/Any_Bonds_Today">http://en.wikipedia.org/wiki/Any_Bonds_Today</a>
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-18"  data-background="./images/rando2.gif" data-background-transition="none">
+
+<h2>RANDOM 2</h2>
+<aside class="notes">
+<p>
+Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://en.wikipedia.org/wiki/It's_Got_Me_Again</a>!
+</p>
+</aside>
+</section>
+
+</section>
+<section>
+<section id="sec-19"  data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
+
+<h2>We put on our robe and wizard hat</h2>
+</section>
+</section>
+</div>
+</div>
+
+<script src="./reveal.js/lib/js/head.min.js"></script>
+<script src="./reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+width: 1280,
+height: 720,
+margin: 0.10,
+minScale: 0.10,
+maxScale: 3.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: '0.01',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src: './Chart.min.js', async: true , callback: function() { Chart.renderChart(); } }, { src: './Chart.StackedBar.js', async: true },
+ { src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: './reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+</body>
+</html>

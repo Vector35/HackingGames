@@ -1,0 +1,318 @@
+#+Title: Hacking Games in a Hacked Game
+#+Author: Rusty Wagner, Jordan Wiens
+#+Email: rusty@vector35.com, jordan@vector35.com
+#+STARTUP: showall
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_mathjax:nil reveal_rolling_links:nil reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1280 reveal_height:720 reveal_title_slide:nil
+#+OPTIONS: toc:0
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.1
+#+REVEAL_MAX_SCALE: 3.5
+#+REVEAL_ROOT: ./reveal.js
+#+REVEAL_TRANS: none
+#+REVEAL_SPEED: 0.01
+#+REVEAL_THEME: vector35
+#+REVEAL_HLEVEL: 1
+#+REVEAL_POSTAMBLE: 
+#+REVEAL_PLUGINS: (highlight markdown notes)
+#+REVEAL_EXTRA_JS: { src: './Chart.min.js', async: true , callback: function() { Chart.renderChart(); } }, { src: './Chart.StackedBar.js', async: true }
+#+MACRO: NL @@latex:\\@@ @@html:<BR>@@
+#+MACRO: SP @@latex:\,@@ @@html:&nbsp;@@
+
+* Hacking Games{{{NL}}}in a{{{NL}}}Hacked Game
+:PROPERTIES:
+:CUSTOM_ID: titleslide
+:reveal_background: #fff
+:reveal_background_trans: none
+:reveal_center: t
+:END:      
+[[./images/rusty-hs.jpg]] [[./images/jordan-hs.jpg]] {{{NL}}}
+[[./images/wide-white.png]]
+
+* BIO
+- CTF junkies
+- Worked for Raytheon SI
+- Quit and founded Vector 35 to do "CTF stuff"
+
+* Is this talk for you?
+#+ATTR_REVEAL: :frag t
+- Did you played Pwn Adventure 3 during Ghost in the Shellcode this year?
+- Have you ever played a CTF before?
+- Have you heard of CTFs before?
+- Have you played or hacked a video game?
+#+BEGIN_NOTES
+Raise your hands and keep them up if any of the following apply to you.
+If you still have your hand down, just go ahead and leave now, you're probably not going to like this talk.
+#+END_NOTES
+
+* Join Us!
+- [[http://pwnadventure.com/]]
+- Download the client for your platform (GPU recommended)
+- We'll hop online for a demo later on
+
+* Motivation
+#+BEGIN_NOTES
+First, a brief note on the motivation for the talk. We're really talking about
+the growth of both CTFs and gaming together, and how they're related. So first,
+gaming.
+#+END_NOTES
+
+* Game Industry Profits
+[[./research/digicapital.png]]
+#+BEGIN_NOTES
+	Here comes the obligatory "Stuff over time" graphs. In this case, money,
+	specifically annual revenue of the video game industry. It's a $90B (or
+	maybe more depending on who's doing the counting) industry, and is only
+	expected to grow.
+	http://www.gartner.com/newsroom/id/2614915 (predicted 100B)
+	Digi-Capital_Global_Games_Investment_Review_2015_Executive_Summary.pdf
+#+END_NOTES
+
+* Hacking (in?) the Game Industry
+- As old as the game industry itself
+- Led to the rise of the demo scene, cracking, trainers, etc
+[[./images/sanderfocus_animation.gif]]
+
+** Notable Examples
+- BNET.D (interop)
+- Glider (interop)
+- Diablo 3 Auction House (vuln)
+[[./images/blizzard.jpg]]
+
+** Code-Signing 
+- Game platforms as early bellwethers
+[[./images/twilight-hack.jpg]] 
+[[./images/nintendo-patch.jpg]]
+#+BEGIN_NOTES
+Discussion of how early video game platforms had incentive for strong DRM and
+were some of the first to implement code-signing. The hacks from those days
+(stealing code-signed objects and repurposing them, for example) remain relevant
+today. Instead of a save game file and video game, it's a signed kernel module
+with a bug for a priv-esc.
+#+END_NOTES
+
+* Growth of CTFs
+:PROPERTIES:
+:reveal_data_state: chart1
+:END:      
+#+REVEAL_HTML: <canvas id="chart1" width="800" height="600"></canvas>
+#+BEGIN_NOTES
+Likewise, there's an interesting parallel trend in the CTF world as well. Not
+are CTFs taking off in popularity, but (as Chris Eagle discussed here two years
+ago, there's increasingly real-world spill-over between them.
+#+END_NOTES
+
+* Brief History of CTFs
+[[./images/two-toy-soldiers.jpg]]
+#+BEGIN_NOTES
+#+END_NOTES
+
+** Basics
+- Red / Blue / Full Spectrum (A/D)
+- WarGames
+
+* Not Just for Fun (Real World impact)
+
+** php-cgi
+#+BEGIN_NOTES
+Eindbazen
+#+END_NOTES
+
+** go, go!
+#+BEGIN_NOTES
+- Bunyan's Revenge
+- PlaidCTF 2013
+- Real GO developers annoying about security
+#+END_NOTES
+** bzip2
+** lollerskaters privesc
+** wireshark 0day
+** what links?
+#+ATTR_REVEAL: :frag t
+- codegate CTF
+#+ATTR_REVEAL: :frag t
+#+BEGIN_SRC C
+bool symbol__restricted_filename(const char *filename,
+				 const char *restricted_filename)
+{
+	bool restricted = false;
+
+	if (symbol_conf.kptr_restrict) {
+		char *r = realpath(filename, NULL);
+
+		if (r != NULL) {
+			restricted = strcmp(r, restricted_filename) == 0;
+			free(r);
+			return restricted;
+		}
+	}
+
+	return restricted;
+}
+#+END_SRC
+
+* Free Tools!
+[[./images/freelabor.jpg]]
+#+BEGIN_NOTES
+Want someone to build a free IDA loader for you if one doesn't exist for the platform you're working on? Just release a CTF challenge on it, and someone will publish it!
+Somewhat kidding about this, but it has happened multiple times. I know multiple people who've released challenges specifically for that, and even as recently as a few months ago, a Nintendo 3DSX loader for IDA was created specifically because of a CTF challenge.
+https://github.com/0xEBFE/3DSX-IDA-PRO-Loader
+#+END_NOTES
+
+* Gaming Challenges in CTFs 
+(a most certainly not exhaustive list)
+
+** Escape from Minecraft
+- [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
+#+BEGIN_NOTES
+- Date: Jan 25 2014 - Jan 27 2014
+#+END_NOTES
+
+** Plaid CTF v1
+https://sysexit.files.wordpress.com/2012/04/worldmap.png
+#+BEGIN_NOTES
+- Date: Apr 27, 2012 - Apr 28, 2012
+#+END_NOTES
+
+** Plaid CTF v2
+[[./images/pctf2013.jpg]]
+#+BEGIN_NOTES
+- Date: April 19, 2013 - April 20, 2013
+#+END_NOTES
+
+** Blocky
+[[./images/blocky-02-overview.png]]
+http://andrewl.dreamhosters.com/blog/2012-02-07/
+#+BEGIN_NOTES
+- Date: January 27, 2012
+#+END_NOTES
+
+** Choose Your Pwn Adventure (Hackquest)
+#+BEGIN_SRC 
+$ nc hackquest.ghostintheshellcode.com 7331
+The 1337 Adventures of an Unknown Hacker
+ 
+What is your name? HACKER
+Welcome, HACKER, to your adventure.
+ 
+You are in your bedroom.  The room is spinning and you are very tired.
+> look
+There is a can of Red Bull here.
+> get can
+You are in your bedroom.  The room is spinning and you are very tired.
+You have a can of Red Bull.
+> use can
+You feel refreshed.
+ 
+You are in your bedroom.  There is a computer on your desk.  To the south is
+the door leading to the rest of the apartment.
+#+END_SRC
+
+#+BEGIN_NOTES
+Evolved over time. Started as "hackquest", a very simple mud at GitS , turned into a Choose Your Pwn Adventure
+#+END_NOTES
+
+** Choose Your Pwn Adventure (1)
+#+BEGIN_SRC 
+          ________
+         / ____/ /_  ____  ____  ________     __  ______  __  _______
+        / /   / __ \/ __ \/ __ \/ ___/ _ \   / / / / __ \/ / / / ___/
+       / /___/ / / / /_/ / /_/ (__  )  __/  / /_/ / /_/ / /_/ / /
+       \____/_/ /_/\____/\____/____/\___/   \__, /\____/\__,_/_/
+    ____                    ___       __   /____/        __
+   / __ \_      ______     /   | ____/ /   _____  ____  / /___  __________
+  / /_/ / | /| / / __ \   / /| |/ __  / | / / _ \/ __ \/ __/ / / / ___/ _ \
+ / ____/| |/ |/ / / / /  / ___ / /_/ /| |/ /  __/ / / / /_/ /_/ / /  /  __/
+/_/     |__/|__/_/ /_/  /_/  |_\__,_/ |___/\___/_/ /_/\__/\__,_/_/   \___/
+
+You hold in your hands a map to a vast treasure under the mountain.  Your
+desire to be rich far outweighs your desire to cooperate with others, so
+you are obviously going on this quest alone, with only your wits and your
+awesome hacker magic to aid you.
+
+You start your quest on a road just outside of town.
+
+You feel a strange forboding feeling eminating from the map, like it has
+an alien magic all of its own.
+
+What do you do?
+1) Follow the road toward the mountain.
+2) Turn around and ask the mage in town what is going on.
+Choice:
+#+END_SRC
+
+** Choose Your Pwn Adventure (2)
+#+REVEAL_HTML: <video width="960" height="540" controls><source src="gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+
+* Pwn Adventure 3
+** Challenges
+- Unbearable Revenge
+- Fire and Ice
+- Overachiever
+- Until the Cows Come Home
+- Pirate's Treasure
+- Blocky's Revenge
+- Egg Hunt
+
+** Hacks
+*** LD＿PRELOAD
+*** [[https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua][Wireshark Dissector]]
+*** [[https://github.com/zku/PwnAdventure3Hacks][PwnAdventure3Hacks Github]] (DirectX Overlay)
+*** [[https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f][Samurai PwnHax.cpp]]
+*** Quick Patch (DEMO!)
+*** DirectX Overlay (DEMO?)
+
+** Unintended Bugs
+*** Instant item steals
+*** Bear Assassins (Golden Guns)
+*** Cow Level visible (ragdoll fun)
+*** An Eggcellent Solution (delete other models)
+*** Cheat Engine (sorta...)
+
+* CTF Tools
+
+One of the major premises of this talk is that CTFs are not only influenced by
+real-world events, but, increasingly, contain innovations that impact the real
+world as well.  
+
+* More CTF Resources
+
+- [[https://ctftime.org/]] - Events, team scores, writeups
+- [[http://captf.com/]] - dump site, mirrors, calendar
+- http://golden-flags.com/ - yearly CTF award
+- http://github.com/ctfs/ - best maintained collection of writeups
+
+* Questions?
+- Slides available at [[http://github.com/vector35/]]
+- Binary Ninja available at [[http://binary.ninja/]]
+- Credits:
+#+BEGIN_SRC text
+Free Labor: https://www.flickr.com/photos/donkeyhotey/5501554002
+
+#+END_SRC
+
+* RANDOM 1
+:PROPERTIES:
+:reveal_background: ./images/rando1.gif
+:reveal_background_size: 720px
+:reveal_background_trans: none
+:END:
+#+BEGIN_NOTES
+Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
+#+END_NOTES
+
+* RANDOM 2
+:PROPERTIES:
+:reveal_background: ./images/rando2.gif
+:reveal_background_trans: none
+:END:
+#+BEGIN_NOTES
+Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
+#+END_NOTES
+
+* We put on our robe and wizard hat
+:PROPERTIES:
+:reveal_background: ./images/MMIBH-team-photo.jpg
+:reveal_background_trans: none
+:END:
