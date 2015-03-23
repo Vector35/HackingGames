@@ -59,7 +59,7 @@ gaming.
 #+END_NOTES
 
 * Game Industry Profits
-[[./research/digicapital.png]]
+[[./images/digicapital.png]]
 #+BEGIN_NOTES
 	Here comes the obligatory "Stuff over time" graphs. In this case, money,
 	specifically annual revenue of the video game industry. It's a $90B (or
@@ -243,7 +243,7 @@ Choice:
 #+END_SRC
 
 ** Choose Your Pwn Adventure (2)
-#+REVEAL_HTML: <video width="960" height="540" controls><source src="gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+#+REVEAL_HTML: <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
 
 * Pwn Adventure 3
 ** Challenges
@@ -286,10 +286,14 @@ world as well.
 * Questions?
 - Slides available at [[http://github.com/vector35/]]
 - Binary Ninja available at [[http://binary.ninja/]]
-- Credits:
+- Credits / Thanks:
 #+BEGIN_SRC text
-Free Labor: https://www.flickr.com/photos/donkeyhotey/5501554002
-
+Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
+Spacemacs: Best editor isn't emacs or vim, but both: https://github.com/syl20bnr/spacemacs
+Org-Reveal: Export from org-mode straight to reveal.js html5 presentations https://github.com/yjwen/org-reveal
+Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
+Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
+It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 #+END_SRC
 
 * RANDOM 1
