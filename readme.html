@@ -106,7 +106,7 @@ gaming.
 <section id="sec-6" >
 
 <h2>Game Industry Profits</h2>
-<img src="./research/digicapital.png" alt="digicapital.png" />
+<img src="./images/digicapital.png" alt="digicapital.png" />
 <aside class="notes">
 <p>
 Here comes the obligatory "Stuff over time" graphs. In this case, money,
@@ -198,7 +198,11 @@ ago, there's increasingly real-world spill-over between them.
 
 <h3>Basics</h3>
 <ul class="org-ul">
-<li>Red / Blue / Full Spectrum (A/D)
+<li>Red Team (Jeopardy Style)
+</li>
+<li>Blue Team ("Defensive")
+</li>
+<li>Full Spectrum (or Attack/Defense)
 </li>
 <li>WarGames
 </li>
@@ -214,44 +218,102 @@ ago, there's increasingly real-world spill-over between them.
 <section id="sec-10-1" >
 
 <h3>php-cgi</h3>
+<p>
+<a href="http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/">http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/</a>
+<img src="./images/eindbazen.png" alt="eindbazen.png" />
+</p>
 <aside class="notes">
 <p>
 Eindbazen
 </p>
 </aside>
-
 </section>
 <section id="sec-10-2" >
 
 <h3>go, go!</h3>
-<aside class="notes">
 <ul class="org-ul">
 <li>Bunyan's Revenge
 </li>
 <li>PlaidCTF 2013
 </li>
-<li>Real GO developers annoying about security
+</ul>
+<aside class="notes">
+<ul class="org-ul">
+<li>Real GO developers annoying about security, so&#x2026;
 </li>
 </ul>
 </aside>
 </section>
 <section id="sec-10-3" >
 
-<h3>bzip2</h3>
+<h3>Pirate Danbi</h3>
+<ul class="org-ul">
+<li class="fragment">bzip2
+</li>
+<li class="fragment"><a href="https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi">https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi</a>
+</li>
+<li class="fragment"><img src="./images/beist.png" alt="beist.png" />
+</li>
+</ul>
+<aside class="notes">
+<p>
+Interesting to note that in real CTFs, people usually don't look to the real
+libraries initially since it would typically make the events take up too much
+time &#x2013; or at least, if we always were investigating things it would.
+</p>
+</aside>
 </section>
 <section id="sec-10-4" >
 
 <h3>lollerskaters privesc</h3>
+<pre  class="fragment">
+=============================================================================
+FreeBSD-SA-11:05.unix                                       Security Advisory
+                                                          The FreeBSD Project
+
+Topic:          Buffer overflow in handling of UNIX socket addresses
+
+Category:       core
+Module:         kern
+Announced:      2011-09-28
+Credits:        Mateusz Guzik
+Affects:        All supported versions of FreeBSD.
+
+[...]
+
+II.  Problem Description
+
+When a UNIX-domain socket is attached to a location using the bind(2)
+system call, the length of the provided path is not validated.  Later,
+when this address was returned via other system calls, it is copied into
+a fixed-length buffer.
+
+Linux uses a larger socket address structure for UNIX-domain sockets
+than FreeBSD, and the FreeBSD's linux emulation code did not translate
+UNIX-domain socket addresses into the correct size of structure.
+</pre>
+<aside class="notes">
+<p>
+<a href="https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc">https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc</a>
+</p>
+</aside>
 </section>
 <section id="sec-10-5" >
 
 <h3>wireshark 0day</h3>
+<aside class="notes">
+<p>
+<a href="http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs">http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs</a>
+</p>
+</aside>
 </section>
 <section id="sec-10-6" >
 
-<h3>what links?</h3>
+<h3>link to the future</h3>
 <ul class="org-ul">
-<li class="fragment">codegate CTF
+<li class="fragment">guesspw from codegate CTF
+</li>
+<li class="fragment">MAXSYMLINKS
 </li>
 </ul>
 <div class="org-src-container">
@@ -285,8 +347,12 @@ Eindbazen
 <img src="./images/freelabor.jpg" alt="freelabor.jpg" />
 <aside class="notes">
 <p>
-Want someone to build a free IDA loader for you if one doesn't exist for the platform you're working on? Just release a CTF challenge on it, and someone will publish it!
-Somewhat kidding about this, but it has happened multiple times. I know multiple people who've released challenges specifically for that, and even as recently as a few months ago, a Nintendo 3DSX loader for IDA was created specifically because of a CTF challenge.
+Want someone to build a free IDA loader for you if one doesn't exist for the
+platform you're working on? Just release a CTF challenge on it, and someone will
+publish it!  Somewhat kidding about this, but it has happened multiple times. I
+know multiple people who've released challenges specifically for that, and even
+as recently as a few months ago, a Nintendo 3DSX loader for IDA was created
+specifically because of a CTF challenge.
 <a href="https://github.com/0xEBFE/3DSX-IDA-PRO-Loader">https://github.com/0xEBFE/3DSX-IDA-PRO-Loader</a>
 </p>
 </aside>
@@ -304,61 +370,7 @@ Somewhat kidding about this, but it has happened multiple times. I know multiple
 </section>
 <section id="sec-12-1" >
 
-<h3>Escape from Minecraft</h3>
-<ul class="org-ul">
-<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
-</li>
-</ul>
-<aside class="notes">
-<ul class="org-ul">
-<li>Date: Jan 25 2014 - Jan 27 2014
-</li>
-</ul>
-</aside>
-
-</section>
-<section id="sec-12-2" >
-
-<h3>Plaid CTF v1</h3>
-<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
-<aside class="notes">
-<ul class="org-ul">
-<li>Date: Apr 27, 2012 - Apr 28, 2012
-</li>
-</ul>
-</aside>
-
-</section>
-<section id="sec-12-3" >
-
-<h3>Plaid CTF v2</h3>
-<img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
-<aside class="notes">
-<ul class="org-ul">
-<li>Date: April 19, 2013 - April 20, 2013
-</li>
-</ul>
-</aside>
-
-</section>
-<section id="sec-12-4" >
-
-<h3>Blocky</h3>
-<p>
-<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
-<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
-</p>
-<aside class="notes">
-<ul class="org-ul">
-<li>Date: January 27, 2012
-</li>
-</ul>
-</aside>
-
-</section>
-<section id="sec-12-5" >
-
-<h3>Choose Your Pwn Adventure (Hackquest)</h3>
+<h3>Hackquest</h3>
 <pre  class="example">
 $ nc hackquest.ghostintheshellcode.com 7331
 The 1337 Adventures of an Unknown Hacker
@@ -381,12 +393,38 @@ the door leading to the rest of the apartment.
 
 <aside class="notes">
 <p>
-Evolved over time. Started as "hackquest", a very simple mud at GitS , turned into a Choose Your Pwn Adventure
+Evolved over time. Started as "hackquest", a very simple mud at GitS, turned
+into a Choose Your Pwn Adventure January 27, 2012
 </p>
 </aside>
 
 </section>
-<section id="sec-12-6" >
+<section id="sec-12-2" >
+
+<h3>Blocky</h3>
+<p>
+<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
+<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
+</p>
+<aside class="notes">
+<p>
+January 27, 2012
+</p>
+</aside>
+
+</section>
+<section id="sec-12-3" >
+
+<h3>Plaid CTF v1</h3>
+<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+<aside class="notes">
+<p>
+Apr 27, 2012 - Apr 28, 2012
+</p>
+</aside>
+
+</section>
+<section id="sec-12-4" >
 
 <h3>Choose Your Pwn Adventure (1)</h3>
 <pre  class="example">
@@ -418,10 +456,40 @@ Choice:
 </pre>
 
 </section>
-<section id="sec-12-7" >
+<section id="sec-12-5" >
+
+<h3>Plaid CTF v2</h3>
+<img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
+<aside class="notes">
+<p>
+April 19, 2013 - April 20, 2013
+</p>
+</aside>
+
+</section>
+<section id="sec-12-6" >
 
 <h3>Choose Your Pwn Adventure (2)</h3>
 <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+<aside class="notes">
+<p>
+Jan 17, 2014 — Jan 19, 2014
+</p>
+</aside>
+
+</section>
+<section id="sec-12-7" >
+
+<h3>Escape from Minecraft</h3>
+<ul class="org-ul">
+<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
+</li>
+</ul>
+<aside class="notes">
+<p>
+Jan 25, 2014 - Jan 27, 2014
+</p>
+</aside>
 </section>
 
 </section>
@@ -509,12 +577,15 @@ Choice:
 <section>
 <section id="sec-14" >
 
-<h2>CTF Tools</h2>
-<p>
-One of the major premises of this talk is that CTFs are not only influenced by
-real-world events, but, increasingly, contain innovations that impact the real
-world as well.  
-</p>
+<h2>CTF Tools worth using in the real world</h2>
+<ul class="org-ul">
+<li>xortool <a href="https://github.com/hellman/xortool">https://github.com/hellman/xortool</a>
+</li>
+<li>pwntols <a href="https://github.com/Gallopsled/pwntools">https://github.com/Gallopsled/pwntools</a>
+</li>
+<li>qira <a href="https://github.com/BinaryAnalysisPlatform/qira">https://github.com/BinaryAnalysisPlatform/qira</a> / <a href="http://qira.me">http://qira.me</a>
+</li>
+</ul>
 </section>
 
 </section>
@@ -527,7 +598,7 @@ world as well.
 </li>
 <li><a href="http://captf.com/">http://captf.com/</a> - dump site, mirrors, calendar
 </li>
-<li><a href="http://golden-flags.com/">http://golden-flags.com/</a> - yearly CTF award
+<li><a href="http://golden-flags.com/">http://golden-flags.com/</a> - yearly CTF awards
 </li>
 <li><a href="http://github.com/ctfs/">http://github.com/ctfs/</a> - best maintained collection of writeups
 </li>
@@ -544,16 +615,17 @@ world as well.
 </li>
 <li>Binary Ninja available at <a href="http://binary.ninja/">http://binary.ninja/</a>
 </li>
-<li>Credits:
+<li>Credits / Thanks:
 </li>
 </ul>
 <div class="org-src-container">
 
 <pre  class="src src-text">Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
 Spacemacs: Best editor isn't emacs or vim, but both: https://github.com/syl20bnr/spacemacs
-Org-Reveal: Export from org-mode straight to reveal.js html5 presentations 
-        https://github.com/yjwen/org-reveal
+Org-Reveal: Export from org-mode straight to reveal.js html5 presentations https://github.com/yjwen/org-reveal
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
+Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
+It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 </pre>
 </div>
 </section>

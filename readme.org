@@ -109,28 +109,74 @@ ago, there's increasingly real-world spill-over between them.
 #+END_NOTES
 
 ** Basics
-- Red / Blue / Full Spectrum (A/D)
+- Red Team (Jeopardy Style)
+- Blue Team ("Defensive")
+- Full Spectrum (or Attack/Defense)
 - WarGames
 
 * Not Just for Fun (Real World impact)
 
 ** php-cgi
+http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/
+[[./images/eindbazen.png]]
 #+BEGIN_NOTES
 Eindbazen
 #+END_NOTES
-
 ** go, go!
-#+BEGIN_NOTES
 - Bunyan's Revenge
 - PlaidCTF 2013
-- Real GO developers annoying about security
+#+BEGIN_NOTES
+- Real GO developers annoying about security, so...
 #+END_NOTES
-** bzip2
-** lollerskaters privesc
-** wireshark 0day
-** what links?
+** Pirate Danbi
 #+ATTR_REVEAL: :frag t
-- codegate CTF
+- bzip2
+- https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi
+- [[./images/beist.png]]
+#+BEGIN_NOTES
+Interesting to note that in real CTFs, people usually don't look to the real
+libraries initially since it would typically make the events take up too much
+time -- or at least, if we always were investigating things it would.
+#+END_NOTES
+** lollerskaters privesc
+#+ATTR_REVEAL: :frag t
+#+BEGIN_SRC
+=============================================================================
+FreeBSD-SA-11:05.unix                                       Security Advisory
+                                                          The FreeBSD Project
+
+Topic:          Buffer overflow in handling of UNIX socket addresses
+
+Category:       core
+Module:         kern
+Announced:      2011-09-28
+Credits:        Mateusz Guzik
+Affects:        All supported versions of FreeBSD.
+
+[...]
+
+II.  Problem Description
+
+When a UNIX-domain socket is attached to a location using the bind(2)
+system call, the length of the provided path is not validated.  Later,
+when this address was returned via other system calls, it is copied into
+a fixed-length buffer.
+
+Linux uses a larger socket address structure for UNIX-domain sockets
+than FreeBSD, and the FreeBSD's linux emulation code did not translate
+UNIX-domain socket addresses into the correct size of structure.
+#+END_SRC
+#+BEGIN_NOTES
+https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc
+#+END_NOTES
+** wireshark 0day
+#+BEGIN_NOTES
+http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs
+#+END_NOTES
+** link to the future
+#+ATTR_REVEAL: :frag t
+- guesspw from codegate CTF
+- MAXSYMLINKS
 #+ATTR_REVEAL: :frag t
 #+BEGIN_SRC C
 bool symbol__restricted_filename(const char *filename,
@@ -155,40 +201,19 @@ bool symbol__restricted_filename(const char *filename,
 * Free Tools!
 [[./images/freelabor.jpg]]
 #+BEGIN_NOTES
-Want someone to build a free IDA loader for you if one doesn't exist for the platform you're working on? Just release a CTF challenge on it, and someone will publish it!
-Somewhat kidding about this, but it has happened multiple times. I know multiple people who've released challenges specifically for that, and even as recently as a few months ago, a Nintendo 3DSX loader for IDA was created specifically because of a CTF challenge.
+Want someone to build a free IDA loader for you if one doesn't exist for the
+platform you're working on? Just release a CTF challenge on it, and someone will
+publish it!  Somewhat kidding about this, but it has happened multiple times. I
+know multiple people who've released challenges specifically for that, and even
+as recently as a few months ago, a Nintendo 3DSX loader for IDA was created
+specifically because of a CTF challenge.
 https://github.com/0xEBFE/3DSX-IDA-PRO-Loader
 #+END_NOTES
 
 * Gaming Challenges in CTFs 
 (a most certainly not exhaustive list)
 
-** Escape from Minecraft
-- [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
-#+BEGIN_NOTES
-- Date: Jan 25 2014 - Jan 27 2014
-#+END_NOTES
-
-** Plaid CTF v1
-https://sysexit.files.wordpress.com/2012/04/worldmap.png
-#+BEGIN_NOTES
-- Date: Apr 27, 2012 - Apr 28, 2012
-#+END_NOTES
-
-** Plaid CTF v2
-[[./images/pctf2013.jpg]]
-#+BEGIN_NOTES
-- Date: April 19, 2013 - April 20, 2013
-#+END_NOTES
-
-** Blocky
-[[./images/blocky-02-overview.png]]
-http://andrewl.dreamhosters.com/blog/2012-02-07/
-#+BEGIN_NOTES
-- Date: January 27, 2012
-#+END_NOTES
-
-** Choose Your Pwn Adventure (Hackquest)
+** Hackquest
 #+BEGIN_SRC 
 $ nc hackquest.ghostintheshellcode.com 7331
 The 1337 Adventures of an Unknown Hacker
@@ -210,7 +235,21 @@ the door leading to the rest of the apartment.
 #+END_SRC
 
 #+BEGIN_NOTES
-Evolved over time. Started as "hackquest", a very simple mud at GitS , turned into a Choose Your Pwn Adventure
+Evolved over time. Started as "hackquest", a very simple mud at GitS, turned
+into a Choose Your Pwn Adventure January 27, 2012
+#+END_NOTES
+
+** Blocky
+[[./images/blocky-02-overview.png]]
+http://andrewl.dreamhosters.com/blog/2012-02-07/
+#+BEGIN_NOTES
+January 27, 2012
+#+END_NOTES
+
+** Plaid CTF v1
+https://sysexit.files.wordpress.com/2012/04/worldmap.png
+#+BEGIN_NOTES
+Apr 27, 2012 - Apr 28, 2012
 #+END_NOTES
 
 ** Choose Your Pwn Adventure (1)
@@ -242,8 +281,23 @@ What do you do?
 Choice:
 #+END_SRC
 
+** Plaid CTF v2
+[[./images/pctf2013.jpg]]
+#+BEGIN_NOTES
+April 19, 2013 - April 20, 2013
+#+END_NOTES
+
 ** Choose Your Pwn Adventure (2)
 #+REVEAL_HTML: <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+#+BEGIN_NOTES
+Jan 17, 2014 — Jan 19, 2014
+#+END_NOTES
+
+** Escape from Minecraft
+- [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
+#+BEGIN_NOTES
+Jan 25, 2014 - Jan 27, 2014
+#+END_NOTES
 
 * Pwn Adventure 3
 ** Challenges
@@ -270,17 +324,16 @@ Choice:
 *** An Eggcellent Solution (delete other models)
 *** Cheat Engine (sorta...)
 
-* CTF Tools
-
-One of the major premises of this talk is that CTFs are not only influenced by
-real-world events, but, increasingly, contain innovations that impact the real
-world as well.  
+* CTF Tools worth using in the real world
+- xortool https://github.com/hellman/xortool
+- pwntols https://github.com/Gallopsled/pwntools
+- qira https://github.com/BinaryAnalysisPlatform/qira / http://qira.me
 
 * More CTF Resources
 
 - [[https://ctftime.org/]] - Events, team scores, writeups
 - [[http://captf.com/]] - dump site, mirrors, calendar
-- http://golden-flags.com/ - yearly CTF award
+- http://golden-flags.com/ - yearly CTF awards
 - http://github.com/ctfs/ - best maintained collection of writeups
 
 * Questions?
