@@ -571,22 +571,22 @@ Jan 17, 2014 — Jan 19, 2014
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-LUA">-- gits.lua
--- A wireshark plug-in to reverse engineer PwnAdventure 3 traffic
+<pre  class="src src-js">-- gits.lua
+-- A wireshark plug-<span style="color: #F0DFAF; font-weight: bold;">in</span> to reverse engineer PwnAdventure 3 traffic
 --
--- http://pwnadventure.com/ for more information.
+-- http:<span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F; font-style: italic;">pwnadventure.com/ for more information.</span>
 --
 -- eric.gragsone@erisresearch.org
 
-gits_proto=Proto("GitS", "Pwn Adventure 3")
+gits_proto=Proto<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"GitS"</span>, <span style="color: #CC9393;">"Pwn Adventure 3"</span><span style="color: #DCDCCC;">)</span>
 
-function addLocation(tvb, pos, tree)
+<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">addLocation</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">tvb</span>, <span style="color: #DFAF8F;">pos</span>, <span style="color: #DFAF8F;">tree</span><span style="color: #DCDCCC;">)</span>
   local branch
 
-  branch=tree:add(tvb(pos,12), "Location")
-  branch:add(tvb(pos,4), "X Coordinates: "..tvb(pos,4):le_uint())
-  branch:add(tvb(pos+4,4), "Y Coordinates: "..tvb(pos+4,4):le_uint())
-  branch:add(tvb(pos+8,4), "Z Coordinates: "..tvb(pos+8,4):le_uint())
+  branch=tree:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,12<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Location"</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"X Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+4,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Y Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+4,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+8,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Z Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+8,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 end
 </pre>
 </div>
@@ -799,7 +799,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{ src: './Chart.min.js', async: true , callback: function() { Chart.renderChart(); } }, { src: './Chart.StackedBar.js', async: true },
+{ src: './js/Chart.min.js', async: true , callback: function() { Chart.renderChart(); } }, { src: './js/Chart.StackedBar.js', async: true },
  { src: './reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
  { src: './reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: './reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
