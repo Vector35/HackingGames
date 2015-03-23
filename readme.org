@@ -170,6 +170,8 @@ UNIX-domain socket addresses into the correct size of structure.
 https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc
 #+END_NOTES
 ** wireshark 0day
+[[./images/wireshark.jpg]]
+
 #+BEGIN_NOTES
 http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs
 #+END_NOTES
@@ -241,9 +243,9 @@ into a Choose Your Pwn Adventure January 27, 2012
 
 ** Blocky
 [[./images/blocky-02-overview.png]]
-http://andrewl.dreamhosters.com/blog/2012-02-07/
 #+BEGIN_NOTES
 January 27, 2012
+http://andrewl.dreamhosters.com/blog/2012-02-07/
 #+END_NOTES
 
 ** Plaid CTF v1
@@ -295,11 +297,13 @@ Jan 17, 2014 — Jan 19, 2014
 
 ** Escape from Minecraft
 - [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
+[[./images/logic_overview.png]]
 #+BEGIN_NOTES
+Four stage, 4-bit shift register
 Jan 25, 2014 - Jan 27, 2014
 #+END_NOTES
 
-* Pwn Adventure 3
+* Pwn Adventure 3 Demo
 ** Challenges
 - Unbearable Revenge
 - Fire and Ice
@@ -309,22 +313,66 @@ Jan 25, 2014 - Jan 27, 2014
 - Blocky's Revenge
 - Egg Hunt
 
-** Hacks
-*** LD＿PRELOAD
-*** [[https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua][Wireshark Dissector]]
-*** [[https://github.com/zku/PwnAdventure3Hacks][PwnAdventure3Hacks Github]] (DirectX Overlay)
-*** [[https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f][Samurai PwnHax.cpp]]
-*** Quick Patch (DEMO!)
-*** DirectX Overlay (DEMO?)
+* 3rd Party Hacks
+** LD＿PRELOAD
 
-** Unintended Bugs
-*** Instant item steals
-*** Bear Assassins (Golden Guns)
-*** Cow Level visible (ragdoll fun)
-*** An Eggcellent Solution (delete other models)
-*** Cheat Engine (sorta...)
+** [[https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua][Wireshark Dissector]]
 
-* CTF Tools worth using in the real world
+** PwnAdventure3Hacks Github
+- DirectX Overlay
+- https://github.com/zku/PwnAdventure3Hacks
+[[./images/overlay.png]]
+
+** Samurai PwnHax.cpp
+- https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f
+#+BEGIN_SRC C
+#include <Windows.h>
+#include <detours.h>
+#include <fstream>
+#include <cstdio>
+#include <cstdlib>
+ 
+#pragma comment(lib, "detours.lib")
+ 
+// Classes
+class TCPSocket {};
+class Player {};
+class Actor {};
+ 
+// Structs
+struct Vector3 {
+	float x, y, z;
+};
+ 
+// Typedefs
+typedef bool(__thiscall *SendFunc)(TCPSocket *, const void*, unsigned int);
+typedef bool(__thiscall *RecvFunc)(TCPSocket *, void*, unsigned int);
+typedef bool(__thiscall *CanJumpFunc)(Player *);
+typedef bool(__thiscall *PlayerChatFunc)(Player *, const char *);
+typedef void(__thiscall *PlayerFastTravelFunc)(Player *, const char *, const char *);
+typedef void(__thiscall *ActorSetPositionFunc)(Actor *, Vector3 *);
+ 
+// Globals
+SendFunc RealSend;
+RecvFunc RealRecv;
+CanJumpFunc RealCanJump;
+PlayerChatFunc RealChat;
+PlayerFastTravelFunc PlayerFastTravel;
+ActorSetPositionFunc ActorSetPosition;
+Player *playerObj = 0;
+TCPSocket *clientSock = 0;
+std::ofstream DbgLogger;
+#+END_SRC
+
+* Unintended Bugs
+#+ATTR_REVEAL: :frag t
+- Instant item steals
+- Bear Assassins (Golden Guns)
+- Cow Level visible (ragdoll fun)
+- An Eggcellent Solution (delete other models)
+- Cheat Engine (sorta...)
+
+* Useful CTF Tools
 - xortool https://github.com/hellman/xortool
 - pwntols https://github.com/Gallopsled/pwntools
 - qira https://github.com/BinaryAnalysisPlatform/qira / http://qira.me
@@ -337,16 +385,19 @@ Jan 25, 2014 - Jan 27, 2014
 - http://github.com/ctfs/ - best maintained collection of writeups
 
 * Questions?
-- Slides available at [[http://github.com/vector35/]]
+- Slides available at [[http://github.com/vector35/HackingGames]]
 - Binary Ninja available at [[http://binary.ninja/]]
 - Credits / Thanks:
 #+BEGIN_SRC text
 Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
-Spacemacs: Best editor isn't emacs or vim, but both: https://github.com/syl20bnr/spacemacs
-Org-Reveal: Export from org-mode straight to reveal.js html5 presentations https://github.com/yjwen/org-reveal
+Spacemacs: https://github.com/syl20bnr/spacemacs
+Org-Reveal: Export from org-mode straight to reveal.js html5 presentations:
+	https://github.com/yjwen/org-reveal
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
 Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
+Dragon Sector Escape from Minecraft Writeup used with Permission:
+	http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
 #+END_SRC
 
 * RANDOM 1

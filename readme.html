@@ -301,6 +301,8 @@ UNIX-domain socket addresses into the correct size of structure.
 <section id="sec-10-5" >
 
 <h3>wireshark 0day</h3>
+<img src="./images/wireshark.jpg" alt="wireshark.jpg" />
+
 <aside class="notes">
 <p>
 <a href="http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs">http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs</a>
@@ -402,13 +404,11 @@ into a Choose Your Pwn Adventure January 27, 2012
 <section id="sec-12-2" >
 
 <h3>Blocky</h3>
-<p>
 <img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
-<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
-</p>
 <aside class="notes">
 <p>
 January 27, 2012
+<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
 </p>
 </aside>
 
@@ -485,8 +485,10 @@ Jan 17, 2014 — Jan 19, 2014
 <li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
 </li>
 </ul>
+<img src="./images/logic_overview.png" alt="logic_overview.png" />
 <aside class="notes">
 <p>
+Four stage, 4-bit shift register
 Jan 25, 2014 - Jan 27, 2014
 </p>
 </aside>
@@ -496,7 +498,7 @@ Jan 25, 2014 - Jan 27, 2014
 <section>
 <section id="sec-13" >
 
-<h2>Pwn Adventure 3</h2>
+<h2>Pwn Adventure 3 Demo</h2>
 </section>
 <section id="sec-13-1" >
 
@@ -517,67 +519,109 @@ Jan 25, 2014 - Jan 27, 2014
 <li>Egg Hunt
 </li>
 </ul>
-
-</section>
-<section id="sec-13-2" >
-
-<h3>Hacks</h3>
-</section>
-<section id="sec-13-2-1" >
-
-<h4>LD＿PRELOAD</h4>
-</section>
-<section id="sec-13-2-2" >
-
-<h4><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">Wireshark Dissector</a></h4>
-</section>
-<section id="sec-13-2-3" >
-
-<h4><a href="https://github.com/zku/PwnAdventure3Hacks">PwnAdventure3Hacks Github</a> (DirectX Overlay)</h4>
-</section>
-<section id="sec-13-2-4" >
-
-<h4><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">Samurai PwnHax.cpp</a></h4>
-</section>
-<section id="sec-13-2-5" >
-
-<h4>Quick Patch (DEMO!)</h4>
-</section>
-<section id="sec-13-2-6" >
-
-<h4>DirectX Overlay (DEMO?)</h4>
-
-</section>
-<section id="sec-13-3" >
-
-<h3>Unintended Bugs</h3>
-</section>
-<section id="sec-13-3-1" >
-
-<h4>Instant item steals</h4>
-</section>
-<section id="sec-13-3-2" >
-
-<h4>Bear Assassins (Golden Guns)</h4>
-</section>
-<section id="sec-13-3-3" >
-
-<h4>Cow Level visible (ragdoll fun)</h4>
-</section>
-<section id="sec-13-3-4" >
-
-<h4>An Eggcellent Solution (delete other models)</h4>
-</section>
-<section id="sec-13-3-5" >
-
-<h4>Cheat Engine (sorta&#x2026;)</h4>
 </section>
 
 </section>
 <section>
 <section id="sec-14" >
 
-<h2>CTF Tools worth using in the real world</h2>
+<h2>3rd Party Hacks</h2>
+</section>
+<section id="sec-14-1" >
+
+<h3>LD＿PRELOAD</h3>
+
+</section>
+<section id="sec-14-2" >
+
+<h3><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">Wireshark Dissector</a></h3>
+
+</section>
+<section id="sec-14-3" >
+
+<h3>PwnAdventure3Hacks Github</h3>
+<ul class="org-ul">
+<li>DirectX Overlay
+</li>
+<li><a href="https://github.com/zku/PwnAdventure3Hacks">https://github.com/zku/PwnAdventure3Hacks</a>
+</li>
+</ul>
+<img src="./images/overlay.png" alt="overlay.png" />
+
+</section>
+<section id="sec-14-4" >
+
+<h3>Samurai PwnHax.cpp</h3>
+<ul class="org-ul">
+<li><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f</a>
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-C"><span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;Windows.h&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;detours.h&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;fstream&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdio&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdlib&gt;</span>
+
+<span style="color: #94BFF3;">#pragma</span> comment<span style="color: #DCDCCC;">(</span>lib, <span style="color: #CC9393;">"detours.lib"</span><span style="color: #DCDCCC;">)</span>
+
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Classes</span>
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">TCPSocket</span> <span style="color: #DCDCCC;">{}</span>;
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Player</span> <span style="color: #DCDCCC;">{}</span>;
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Actor</span> <span style="color: #DCDCCC;">{}</span>;
+
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Structs</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">Vector3</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">float</span> <span style="color: #DFAF8F;">x</span>, <span style="color: #DFAF8F;">y</span>, <span style="color: #DFAF8F;">z</span>;
+<span style="color: #DCDCCC;">}</span>;
+
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Typedefs</span>
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">SendFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">RecvFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">CanJumpFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerChatFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerFastTravelFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">ActorSetPositionFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Actor</span> *, <span style="color: #7CB8BB;">Vector3</span> *<span style="color: #DCDCCC;">)</span>;
+
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Globals</span>
+<span style="color: #7CB8BB;">SendFunc</span> <span style="color: #DFAF8F;">RealSend</span>;
+<span style="color: #7CB8BB;">RecvFunc</span> <span style="color: #DFAF8F;">RealRecv</span>;
+<span style="color: #7CB8BB;">CanJumpFunc</span> <span style="color: #DFAF8F;">RealCanJump</span>;
+<span style="color: #7CB8BB;">PlayerChatFunc</span> <span style="color: #DFAF8F;">RealChat</span>;
+<span style="color: #7CB8BB;">PlayerFastTravelFunc</span> <span style="color: #DFAF8F;">PlayerFastTravel</span>;
+<span style="color: #7CB8BB;">ActorSetPositionFunc</span> <span style="color: #DFAF8F;">ActorSetPosition</span>;
+<span style="color: #7CB8BB;">Player</span> *<span style="color: #DFAF8F;">playerObj</span> = 0;
+<span style="color: #7CB8BB;">TCPSocket</span> *<span style="color: #DFAF8F;">clientSock</span> = 0;
+std::ofstream DbgLogger;
+</pre>
+</div>
+</section>
+
+</section>
+<section>
+<section id="sec-15" >
+
+<h2>Unintended Bugs</h2>
+<ul class="org-ul">
+<li class="fragment">Instant item steals
+</li>
+<li class="fragment">Bear Assassins (Golden Guns)
+</li>
+<li class="fragment">Cow Level visible (ragdoll fun)
+</li>
+<li class="fragment">An Eggcellent Solution (delete other models)
+</li>
+<li class="fragment">Cheat Engine (sorta&#x2026;)
+</li>
+</ul>
+</section>
+
+</section>
+<section>
+<section id="sec-16" >
+
+<h2>Useful CTF Tools</h2>
 <ul class="org-ul">
 <li>xortool <a href="https://github.com/hellman/xortool">https://github.com/hellman/xortool</a>
 </li>
@@ -590,7 +634,7 @@ Jan 25, 2014 - Jan 27, 2014
 
 </section>
 <section>
-<section id="sec-15" >
+<section id="sec-17" >
 
 <h2>More CTF Resources</h2>
 <ul class="org-ul">
@@ -607,11 +651,11 @@ Jan 25, 2014 - Jan 27, 2014
 
 </section>
 <section>
-<section id="sec-16" >
+<section id="sec-18" >
 
 <h2>Questions?</h2>
 <ul class="org-ul">
-<li>Slides available at <a href="http://github.com/vector35/">http://github.com/vector35/</a>
+<li>Slides available at <a href="http://github.com/vector35/HackingGames">http://github.com/vector35/HackingGames</a>
 </li>
 <li>Binary Ninja available at <a href="http://binary.ninja/">http://binary.ninja/</a>
 </li>
@@ -621,18 +665,27 @@ Jan 25, 2014 - Jan 27, 2014
 <div class="org-src-container">
 
 <pre  class="src src-text">Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
-Spacemacs: Best editor isn't emacs or vim, but both: https://github.com/syl20bnr/spacemacs
-Org-Reveal: Export from org-mode straight to reveal.js html5 presentations https://github.com/yjwen/org-reveal
+
+Spacemacs: https://github.com/syl20bnr/spacemacs
+
+Org-Reveal: Export from org-mode straight to reveal.js html5 presentations:
+    https://github.com/yjwen/org-reveal
+
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
+
 Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
+
 It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
+
+Dragon Sector Escape from Minecraft Writeup used with Permission:
+    http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
 </pre>
 </div>
 </section>
 
 </section>
 <section>
-<section id="sec-17"  data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
+<section id="sec-19"  data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
 
 <h2>RANDOM 1</h2>
 <aside class="notes">
@@ -644,7 +697,7 @@ Public Domain: <a href="http://en.wikipedia.org/wiki/Any_Bonds_Today">http://en.
 
 </section>
 <section>
-<section id="sec-18"  data-background="./images/rando2.gif" data-background-transition="none">
+<section id="sec-20"  data-background="./images/rando2.gif" data-background-transition="none">
 
 <h2>RANDOM 2</h2>
 <aside class="notes">
@@ -656,7 +709,7 @@ Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://e
 
 </section>
 <section>
-<section id="sec-19"  data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
+<section id="sec-21"  data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
 
 <h2>We put on our robe and wizard hat</h2>
 </section>
