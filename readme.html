@@ -368,6 +368,17 @@ specifically because of a CTF challenge.
 <p>
 (a most certainly not exhaustive list)
 </p>
+<aside class="notes">
+<p>
+15:00 mark
+</p>
+<ul class="org-ul">
+<li>PPP/GitS one upping / inspiration (explain PPP/GitS!)
+</li>
+<li>Complexity on the rise
+</li>
+</ul>
+</aside>
 
 </section>
 <section id="sec-12-1" >
@@ -395,36 +406,14 @@ the door leading to the rest of the apartment.
 
 <aside class="notes">
 <p>
-Evolved over time. Started as "hackquest", a very simple mud at GitS, turned
-into a Choose Your Pwn Adventure January 27, 2012
+January 27, 2012
+Evolved over time. Started as "hackquest", a very simple game like adventure,
+all the way to a full MMORPG three years later
 </p>
 </aside>
 
 </section>
 <section id="sec-12-2" >
-
-<h3>Blocky</h3>
-<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
-<aside class="notes">
-<p>
-January 27, 2012
-<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
-</p>
-</aside>
-
-</section>
-<section id="sec-12-3" >
-
-<h3>Plaid CTF v1</h3>
-<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
-<aside class="notes">
-<p>
-Apr 27, 2012 - Apr 28, 2012
-</p>
-</aside>
-
-</section>
-<section id="sec-12-4" >
 
 <h3>Choose Your Pwn Adventure (1)</h3>
 <pre  class="example">
@@ -454,9 +443,56 @@ What do you do?
 2) Turn around and ask the mage in town what is going on.
 Choice:
 </pre>
+<aside class="notes">
+<p>
+Feb 15, 2013
+Started the name of the series, "Chose your Pwn Adventure" because you could
+solve it multiple ways.
+</p>
+</aside>
+
+</section>
+<section id="sec-12-3" >
+
+<h3>Blocky</h3>
+<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
+<aside class="notes">
+<p>
+January 27, 2012
+<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
+</p>
+</aside>
+
+</section>
+<section id="sec-12-4" >
+
+<h3>Escape from Minecraft</h3>
+<ul class="org-ul">
+<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
+</li>
+</ul>
+<img src="./images/logic_overview.png" alt="logic_overview.png" />
+<aside class="notes">
+<p>
+PHDays
+Jan 25, 2014 - Jan 27, 2014
+Four stage, 4-bit shift register
+</p>
+</aside>
 
 </section>
 <section id="sec-12-5" >
+
+<h3>Plaid CTF v1</h3>
+<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+<aside class="notes">
+<p>
+Apr 27, 2012 - Apr 28, 2012
+</p>
+</aside>
+
+</section>
+<section id="sec-12-6" >
 
 <h3>Plaid CTF v2</h3>
 <img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
@@ -467,29 +503,13 @@ April 19, 2013 - April 20, 2013
 </aside>
 
 </section>
-<section id="sec-12-6" >
+<section id="sec-12-7" >
 
 <h3>Choose Your Pwn Adventure (2)</h3>
 <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
 <aside class="notes">
 <p>
 Jan 17, 2014 — Jan 19, 2014
-</p>
-</aside>
-
-</section>
-<section id="sec-12-7" >
-
-<h3>Escape from Minecraft</h3>
-<ul class="org-ul">
-<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
-</li>
-</ul>
-<img src="./images/logic_overview.png" alt="logic_overview.png" />
-<aside class="notes">
-<p>
-Four stage, 4-bit shift register
-Jan 25, 2014 - Jan 27, 2014
 </p>
 </aside>
 </section>
@@ -499,6 +519,11 @@ Jan 25, 2014 - Jan 27, 2014
 <section id="sec-13" >
 
 <h2>Pwn Adventure 3 Demo</h2>
+<aside class="notes">
+<p>
+25-27:00 minute mark
+</p>
+</aside>
 </section>
 <section id="sec-13-1" >
 
@@ -526,6 +551,11 @@ Jan 25, 2014 - Jan 27, 2014
 <section id="sec-14" >
 
 <h2>3rd Party Hacks</h2>
+<aside class="notes">
+<p>
+45:00-50:00 minute mark
+</p>
+</aside>
 </section>
 <section id="sec-14-1" >
 
@@ -534,7 +564,32 @@ Jan 25, 2014 - Jan 27, 2014
 </section>
 <section id="sec-14-2" >
 
-<h3><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">Wireshark Dissector</a></h3>
+<h3>Wireshark Dissector</h3>
+<ul class="org-ul">
+<li><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua</a>
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-LUA">-- gits.lua
+-- A wireshark plug-in to reverse engineer PwnAdventure 3 traffic
+--
+-- http://pwnadventure.com/ for more information.
+--
+-- eric.gragsone@erisresearch.org
+
+gits_proto=Proto("GitS", "Pwn Adventure 3")
+
+function addLocation(tvb, pos, tree)
+  local branch
+
+  branch=tree:add(tvb(pos,12), "Location")
+  branch:add(tvb(pos,4), "X Coordinates: "..tvb(pos,4):le_uint())
+  branch:add(tvb(pos+4,4), "Y Coordinates: "..tvb(pos+4,4):le_uint())
+  branch:add(tvb(pos+8,4), "Z Coordinates: "..tvb(pos+8,4):le_uint())
+end
+</pre>
+</div>
 
 </section>
 <section id="sec-14-3" >
@@ -612,7 +667,7 @@ std::ofstream DbgLogger;
 </li>
 <li class="fragment">An Eggcellent Solution (delete other models)
 </li>
-<li class="fragment">Cheat Engine (sorta&#x2026;)
+<li class="fragment">Cheat Engine 
 </li>
 </ul>
 </section>
@@ -665,18 +720,12 @@ std::ofstream DbgLogger;
 <div class="org-src-container">
 
 <pre  class="src src-text">Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
-
 Spacemacs: https://github.com/syl20bnr/spacemacs
-
 Org-Reveal: Export from org-mode straight to reveal.js html5 presentations:
     https://github.com/yjwen/org-reveal
-
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
-
 Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
-
 It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
-
 Dragon Sector Escape from Minecraft Writeup used with Permission:
     http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
 </pre>

@@ -214,6 +214,11 @@ https://github.com/0xEBFE/3DSX-IDA-PRO-Loader
 
 * Gaming Challenges in CTFs 
 (a most certainly not exhaustive list)
+#+BEGIN_NOTES
+15:00 mark
+- PPP/GitS one upping / inspiration (explain PPP/GitS!)
+- Complexity on the rise
+#+END_NOTES
 
 ** Hackquest
 #+BEGIN_SRC 
@@ -237,21 +242,9 @@ the door leading to the rest of the apartment.
 #+END_SRC
 
 #+BEGIN_NOTES
-Evolved over time. Started as "hackquest", a very simple mud at GitS, turned
-into a Choose Your Pwn Adventure January 27, 2012
-#+END_NOTES
-
-** Blocky
-[[./images/blocky-02-overview.png]]
-#+BEGIN_NOTES
 January 27, 2012
-http://andrewl.dreamhosters.com/blog/2012-02-07/
-#+END_NOTES
-
-** Plaid CTF v1
-https://sysexit.files.wordpress.com/2012/04/worldmap.png
-#+BEGIN_NOTES
-Apr 27, 2012 - Apr 28, 2012
+Evolved over time. Started as "hackquest", a very simple game like adventure,
+all the way to a full MMORPG three years later
 #+END_NOTES
 
 ** Choose Your Pwn Adventure (1)
@@ -282,6 +275,33 @@ What do you do?
 2) Turn around and ask the mage in town what is going on.
 Choice:
 #+END_SRC
+#+BEGIN_NOTES
+Feb 15, 2013
+Started the name of the series, "Chose your Pwn Adventure" because you could
+solve it multiple ways.
+#+END_NOTES
+
+** Blocky
+[[./images/blocky-02-overview.png]]
+#+BEGIN_NOTES
+January 27, 2012
+http://andrewl.dreamhosters.com/blog/2012-02-07/
+#+END_NOTES
+
+** Escape from Minecraft
+- [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
+[[./images/logic_overview.png]]
+#+BEGIN_NOTES
+PHDays
+Jan 25, 2014 - Jan 27, 2014
+Four stage, 4-bit shift register
+#+END_NOTES
+
+** Plaid CTF v1
+https://sysexit.files.wordpress.com/2012/04/worldmap.png
+#+BEGIN_NOTES
+Apr 27, 2012 - Apr 28, 2012
+#+END_NOTES
 
 ** Plaid CTF v2
 [[./images/pctf2013.jpg]]
@@ -295,15 +315,10 @@ April 19, 2013 - April 20, 2013
 Jan 17, 2014 — Jan 19, 2014
 #+END_NOTES
 
-** Escape from Minecraft
-- [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
-[[./images/logic_overview.png]]
-#+BEGIN_NOTES
-Four stage, 4-bit shift register
-Jan 25, 2014 - Jan 27, 2014
-#+END_NOTES
-
 * Pwn Adventure 3 Demo
+#+BEGIN_NOTES
+25-27:00 minute mark
+#+END_NOTES
 ** Challenges
 - Unbearable Revenge
 - Fire and Ice
@@ -314,9 +329,32 @@ Jan 25, 2014 - Jan 27, 2014
 - Egg Hunt
 
 * 3rd Party Hacks
+#+BEGIN_NOTES
+45:00-50:00 minute mark
+#+END_NOTES
 ** LD＿PRELOAD
 
-** [[https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua][Wireshark Dissector]]
+** Wireshark Dissector
+- https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua
+#+BEGIN_SRC LUA
+-- gits.lua
+-- A wireshark plug-in to reverse engineer PwnAdventure 3 traffic
+--
+-- http://pwnadventure.com/ for more information.
+--
+-- eric.gragsone@erisresearch.org
+
+gits_proto=Proto("GitS", "Pwn Adventure 3")
+
+function addLocation(tvb, pos, tree)
+  local branch
+  
+  branch=tree:add(tvb(pos,12), "Location")
+  branch:add(tvb(pos,4), "X Coordinates: "..tvb(pos,4):le_uint())
+  branch:add(tvb(pos+4,4), "Y Coordinates: "..tvb(pos+4,4):le_uint())
+  branch:add(tvb(pos+8,4), "Z Coordinates: "..tvb(pos+8,4):le_uint())
+end
+#+END_SRC
 
 ** PwnAdventure3Hacks Github
 - DirectX Overlay
@@ -370,7 +408,7 @@ std::ofstream DbgLogger;
 - Bear Assassins (Golden Guns)
 - Cow Level visible (ragdoll fun)
 - An Eggcellent Solution (delete other models)
-- Cheat Engine (sorta...)
+- Cheat Engine 
 
 * Useful CTF Tools
 - xortool https://github.com/hellman/xortool
