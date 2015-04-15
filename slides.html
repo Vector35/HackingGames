@@ -74,7 +74,7 @@ going to like this talk.
 </section>
 </section>
 <section>
-<section id="slide-sec-4" data-background="./images/confused.jpg" data-background-size="720px" data-background-transition="none">
+<section id="slide-sec-4" data-background="./images/confused.jpg" data-background-transition="none">
 <h2 id="sec-4">Questions?</h2>
 
 </section>
@@ -249,21 +249,24 @@ modern-attack defense style event.
 </section>
 </section>
 <section>
-<section id="slide-sec-11">
-<h2 id="sec-11">Real World Impact</h2>
+<section id="slide-sec-11" data-background="./images/bugs.jpg" data-background-transition="none">
+<h2 id="sec-11">Real World Bugs</h2>
+
 <aside class="notes">
 nil
 </aside>
 
 </section>
 <section id="slide-sec-11-1">
-<h3 id="sec-11-1">php</h3>
-<ul>
-<li>PHP in general is worthy of its own whole talk about CTF challenges</li>
+<h3 id="sec-11-1"></h3>
 
-</ul>
+<div class="figure">
+<p><img src="./images/phplogo.png" alt="phplogo.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
+PHP in general is worthy of its own whole talk about CTF challenges
 The whipping boy of CTFs (and Stefan Esser), PHP is constantly getting picked
 on. You could fill a talk showing nothing but the awful ways PHP is abused and
 mocked. A couple of common targets for abuse are:
@@ -273,8 +276,11 @@ mocked. A couple of common targets for abuse are:
 </section>
 <section id="slide-sec-11-1-1">
 <h4 id="sec-11-1-1">fighting for equality</h4>
-<pre  class="example">
-</pre>
+
+<div class="figure">
+<p><img src="./images/php.png" alt="php.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
 When are two unequal things equal? If you ask PHP, pretty darn often. An empty
@@ -286,8 +292,17 @@ array? Why yes, yes it is equal to any random string.
 </section>
 <section id="slide-sec-11-1-2">
 <h4 id="sec-11-1-2">type coercion</h4>
-<pre  class="example">
+<div class="org-src-container">
+
+<pre  class="src src-php"><span style="color: #94BFF3;">&lt;?php</span>
+    <span style="color: #DCDCCC; background-color: #111111;">$</span><span style="color: #DFAF8F;">key</span> = <span style="color: #CC9393;">"key{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}"</span>;
+    <span style="color: #DCDCCC; background-color: #111111;">$</span><span style="color: #DFAF8F;">pass</span> = <span style="color: #CC9393;">"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"</span>;
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span> strcasecmp<span style="color: #BFEBBF;">(</span> <span style="color: #DCDCCC; background-color: #111111;">$</span><span style="color: #DFAF8F;">_GET</span><span style="color: #D0BF8F;">[</span><span style="color: #CC9393;">'pass'</span><span style="color: #D0BF8F;">]</span>, <span style="color: #DCDCCC; background-color: #111111;">$</span><span style="color: #DFAF8F;">pass</span> <span style="color: #BFEBBF;">)</span> == <span style="color: #BFEBBF;">0</span> <span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+        <span style="color: #F0DFAF; font-weight: bold;">echo</span><span style="color: #BFEBBF;">(</span><span style="color: #DCDCCC; background-color: #111111;">$</span><span style="color: #DFAF8F;">key</span><span style="color: #BFEBBF;">)</span>;
+    <span style="color: #DCDCCC;">}</span>
+<span style="color: #94BFF3;">?&gt;</span>
 </pre>
+</div>
 <aside class="notes">
 <p>
 This bug is particularly interesting since multiple CTFs have been bitten by it
@@ -307,7 +322,7 @@ CTF players were introduced to them through CTFs.
 <section id="slide-sec-11-1-3">
 <h4 id="sec-11-1-3">php-cgi</h4>
 <p>
-<a href="http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/">http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/</a>
+<a href="http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/">eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823</a>
 <img src="./images/eindbazen.png" alt="eindbazen.png" />
 </p>
 <aside class="notes">
@@ -323,11 +338,40 @@ example was the php-cgi vulnerability that Eindbazen found a few years ago.
 </section>
 <section id="slide-sec-11-2">
 <h3 id="sec-11-2">go go!</h3>
-<ul>
-<li>Bunyan's Revenge</li>
-<li>PlaidCTF 2013</li>
+<p>
+Bunyan's Revenge (PlaidCTF 2013)
+</p>
+<div class="org-src-container">
 
-</ul>
+<pre  class="src src-C">    <span style="color: #F0DFAF; font-weight: bold;">case</span> ODOTPTR:
+        cgen<span style="color: #DCDCCC;">(</span>nl, res<span style="color: #DCDCCC;">)</span>;
++       <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">explicit check for nil if struct is large enough</span>
++       <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">that we might derive too big a pointer.</span>
++       <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>nl-&gt;type-&gt;type-&gt;width &gt;= unmappedzero<span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
++           regalloc<span style="color: #BFEBBF;">(</span>&amp;n1, types<span style="color: #D0BF8F;">[</span>tptr<span style="color: #D0BF8F;">]</span>, res<span style="color: #BFEBBF;">)</span>;
++           gmove<span style="color: #BFEBBF;">(</span>res, &amp;n1<span style="color: #BFEBBF;">)</span>;
++           n1.op = OINDREG;
++           n1.type = types<span style="color: #BFEBBF;">[</span>TUINT8<span style="color: #BFEBBF;">]</span>;
++           n1.xoffset = <span style="color: #BFEBBF;">0</span>;
++           gins<span style="color: #BFEBBF;">(</span>ATESTB, nodintconst<span style="color: #D0BF8F;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #D0BF8F;">)</span>, &amp;n1<span style="color: #BFEBBF;">)</span>;
++           regfree<span style="color: #BFEBBF;">(</span>&amp;n1<span style="color: #BFEBBF;">)</span>;
++       <span style="color: #DCDCCC;">}</span>
+        <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #DCDCCC;">(</span>n-&gt;xoffset != <span style="color: #BFEBBF;">0</span><span style="color: #DCDCCC;">)</span> <span style="color: #DCDCCC;">{</span>
+-           <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">explicit check for nil if struct is large enough</span>
+-           <span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">that we might derive too big a pointer.</span>
+-           <span style="color: #F0DFAF; font-weight: bold;">if</span><span style="color: #BFEBBF;">(</span>nl-&gt;type-&gt;type-&gt;width &gt;= unmappedzero<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+-               regalloc<span style="color: #D0BF8F;">(</span>&amp;n1, types<span style="color: #93E0E3;">[</span>tptr<span style="color: #93E0E3;">]</span>, res<span style="color: #D0BF8F;">)</span>;
+-               gmove<span style="color: #D0BF8F;">(</span>res, &amp;n1<span style="color: #D0BF8F;">)</span>;
+-               n1.op = OINDREG;
+-               n1.type = types<span style="color: #D0BF8F;">[</span>TUINT8<span style="color: #D0BF8F;">]</span>;
+-               n1.xoffset = <span style="color: #BFEBBF;">0</span>;
+-               gins<span style="color: #D0BF8F;">(</span>ATESTB, nodintconst<span style="color: #93E0E3;">(</span><span style="color: #BFEBBF;">0</span><span style="color: #93E0E3;">)</span>, &amp;n1<span style="color: #D0BF8F;">)</span>;
+-               regfree<span style="color: #D0BF8F;">(</span>&amp;n1<span style="color: #D0BF8F;">)</span>;
+-           <span style="color: #BFEBBF;">}</span>
+            ginscon<span style="color: #BFEBBF;">(</span>optoas<span style="color: #D0BF8F;">(</span>OADD, types<span style="color: #93E0E3;">[</span>tptr<span style="color: #93E0E3;">]</span><span style="color: #D0BF8F;">)</span>, n-&gt;xoffset, res<span style="color: #BFEBBF;">)</span>;
+</pre>
+</div>
+
 <aside class="notes">
 <ul class="org-ul">
 <li>Real GO developers annoying about security, so&#x2026;
@@ -339,8 +383,8 @@ example was the php-cgi vulnerability that Eindbazen found a few years ago.
 <section id="slide-sec-11-3">
 <h3 id="sec-11-3">Pirate Danbi</h3>
 <ul>
-<li class="fragment -">bzip2</li>
-<li class="fragment -"><a href="https://git.io/vvETK">https://git.io/vvETK</a> (ctf writeup repository)</li>
+<li>bzip2</li>
+<li><a href="https://git.io/vvETK">https://git.io/vvETK</a> (ctf writeup repository)</li>
 
 </ul>
 
@@ -416,23 +460,23 @@ UNIX-domain socket addresses into the correct size of structure.
 </ul>
 <div class="org-src-container">
 
-<pre  class="fragment (appear)">bool symbol__restricted_filename(const char *filename,
-                 const char *restricted_filename)
-{
-    bool restricted = false;
+<pre  class="fragment (appear)"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
+                 <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">restricted_filename</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">restricted</span> = <span style="color: #BFEBBF;">false</span>;
 
-    if (symbol_conf.kptr_restrict) {
-        char *r = realpath(filename, NULL);
+    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>symbol_conf.kptr_restrict<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
+        <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">r</span> = realpath<span style="color: #D0BF8F;">(</span>filename, <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span>;
 
-        if (r != NULL) {
-            restricted = strcmp(r, restricted_filename) == 0;
-            free(r);
-            return restricted;
-        }
-    }
+        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>r != <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
+            restricted = strcmp<span style="color: #93E0E3;">(</span>r, restricted_filename<span style="color: #93E0E3;">)</span> == <span style="color: #BFEBBF;">0</span>;
+            free<span style="color: #93E0E3;">(</span>r<span style="color: #93E0E3;">)</span>;
+            <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
+        <span style="color: #D0BF8F;">}</span>
+    <span style="color: #BFEBBF;">}</span>
 
-    return restricted;
-}
+    <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
+<span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
 
@@ -447,6 +491,10 @@ UNIX-domain socket addresses into the correct size of structure.
 </p>
 </div>
 <aside class="notes">
+<p>
+Crowd-sourced bugs.
+</p>
+
 <p>
 Want someone to build a free IDA loader for you if one doesn't exist for the
 platform you're working on? Just release a CTF challenge on it, and someone will
@@ -534,6 +582,7 @@ solve it multiple ways.
 <p>
 January 27, 2012
 <a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
+Explain context of SMT solvers to modern exploitation
 </p>
 
 </aside>
@@ -580,7 +629,7 @@ Four stage, 4-bit shift register
 <h3 id="sec-13-5">Plaid CTF v1</h3>
 
 <div class="figure">
-<p><img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+<p><img src="./images/worldmap.png" alt="worldmap.png" />
 </p>
 </div>
 <aside class="notes">
@@ -608,7 +657,7 @@ April 19, 2013 - April 20, 2013
 </section>
 <section id="slide-sec-13-7">
 <h3 id="sec-13-7">Pwn Adventure (2)</h3>
-<video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+<video width="960" height="540" controls data-autoplay><source src="media/gits2014teaser-small.mp4" type="video/mp4"></video>
 <aside class="notes">
 <p>
 Jan 17, 2014 — Jan 19, 2014
@@ -660,21 +709,21 @@ nil
 <div class="org-src-container">
 
 <pre  class="src src-js">-- gits.lua
--- A wireshark plug-in to reverse engineer PwnAdventure 3 traffic
+-- A wireshark plug-<span style="color: #F0DFAF; font-weight: bold;">in</span> to reverse engineer PwnAdventure <span style="color: #BFEBBF;">3</span> traffic
 --
--- http://pwnadventure.com/ for more information.
+-- http:<span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F; font-style: italic;">pwnadventure.com/ for more information.</span>
 --
 -- eric.gragsone@erisresearch.org
 
-gits_proto=Proto("GitS", "Pwn Adventure 3")
+gits_proto=Proto<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"GitS"</span>, <span style="color: #CC9393;">"Pwn Adventure 3"</span><span style="color: #DCDCCC;">)</span>
 
-function addLocation(tvb, pos, tree)
+<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">addLocation</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">tvb</span>, <span style="color: #DFAF8F;">pos</span>, <span style="color: #DFAF8F;">tree</span><span style="color: #DCDCCC;">)</span>
   local branch
 
-  branch=tree:add(tvb(pos,12), "Location")
-  branch:add(tvb(pos,4), "X Coordinates: "..tvb(pos,4):le_uint())
-  branch:add(tvb(pos+4,4), "Y Coordinates: "..tvb(pos+4,4):le_uint())
-  branch:add(tvb(pos+8,4), "Z Coordinates: "..tvb(pos+8,4):le_uint())
+  branch=tree:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,<span style="color: #BFEBBF;">12</span><span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Location"</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"X Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+<span style="color: #BFEBBF;">4</span>,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Y Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+<span style="color: #BFEBBF;">4</span>,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+<span style="color: #BFEBBF;">8</span>,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Z Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+<span style="color: #BFEBBF;">8</span>,<span style="color: #BFEBBF;">4</span><span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
 end
 </pre>
 </div>
@@ -684,7 +733,7 @@ end
 <h3 id="sec-15-3">PwnAdventure3Hacks Github</h3>
 <ul>
 <li>DirectX Overlay</li>
-<li><a href="https://github.com/zku/PwnAdventure3Hacks">https://github.com/zku/PwnAdventure3Hacks</a></li>
+<li><a href="https://github.com/zku/PwnAdventure3Hacks">github.com/zku/PwnAdventure3Hacks</a></li>
 
 </ul>
 
@@ -696,47 +745,46 @@ end
 </section>
 <section id="slide-sec-15-4">
 <h3 id="sec-15-4">Samurai PwnHax.cpp</h3>
-<ul>
-<li><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f</a></li>
-
-</ul>
+<p>
+<a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f</a>
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-C">#include &lt;Windows.h&gt;
-#include &lt;detours.h&gt;
-#include &lt;fstream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
+<pre  class="src src-C"><span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;Windows.h&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;detours.h&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;fstream&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdio&gt;</span>
+<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdlib&gt;</span>
 
-#pragma comment(lib, "detours.lib")
+<span style="color: #94BFF3;">#pragma</span> comment<span style="color: #DCDCCC;">(</span>lib, <span style="color: #CC9393;">"detours.lib"</span><span style="color: #DCDCCC;">)</span>
 
-// Classes
-class TCPSocket {};
-class Player {};
-class Actor {};
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Classes</span>
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">TCPSocket</span> <span style="color: #DCDCCC;">{}</span>;
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Player</span> <span style="color: #DCDCCC;">{}</span>;
+<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Actor</span> <span style="color: #DCDCCC;">{}</span>;
 
-// Structs
-struct Vector3 {
-    float x, y, z;
-};
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Structs</span>
+<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">Vector3</span> <span style="color: #DCDCCC;">{</span>
+    <span style="color: #7CB8BB;">float</span> <span style="color: #DFAF8F;">x</span>, <span style="color: #DFAF8F;">y</span>, <span style="color: #DFAF8F;">z</span>;
+<span style="color: #DCDCCC;">}</span>;
 
-// Typedefs
-typedef bool(__thiscall *SendFunc)(TCPSocket *, const void*, unsigned int);
-typedef bool(__thiscall *RecvFunc)(TCPSocket *, void*, unsigned int);
-typedef bool(__thiscall *CanJumpFunc)(Player *);
-typedef bool(__thiscall *PlayerChatFunc)(Player *, const char *);
-typedef void(__thiscall *PlayerFastTravelFunc)(Player *, const char *, const char *);
-typedef void(__thiscall *ActorSetPositionFunc)(Actor *, Vector3 *);
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Typedefs</span>
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">SendFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">RecvFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">CanJumpFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerChatFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerFastTravelFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">ActorSetPositionFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Actor</span> *, <span style="color: #7CB8BB;">Vector3</span> *<span style="color: #DCDCCC;">)</span>;
 
-// Globals
-SendFunc RealSend;
-RecvFunc RealRecv;
-CanJumpFunc RealCanJump;
-PlayerChatFunc RealChat;
-PlayerFastTravelFunc PlayerFastTravel;
-ActorSetPositionFunc ActorSetPosition;
-Player *playerObj = 0;
-TCPSocket *clientSock = 0;
+<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Globals</span>
+<span style="color: #7CB8BB;">SendFunc</span> <span style="color: #DFAF8F;">RealSend</span>;
+<span style="color: #7CB8BB;">RecvFunc</span> <span style="color: #DFAF8F;">RealRecv</span>;
+<span style="color: #7CB8BB;">CanJumpFunc</span> <span style="color: #DFAF8F;">RealCanJump</span>;
+<span style="color: #7CB8BB;">PlayerChatFunc</span> <span style="color: #DFAF8F;">RealChat</span>;
+<span style="color: #7CB8BB;">PlayerFastTravelFunc</span> <span style="color: #DFAF8F;">PlayerFastTravel</span>;
+<span style="color: #7CB8BB;">ActorSetPositionFunc</span> <span style="color: #DFAF8F;">ActorSetPosition</span>;
+<span style="color: #7CB8BB;">Player</span> *<span style="color: #DFAF8F;">playerObj</span> = <span style="color: #BFEBBF;">0</span>;
+<span style="color: #7CB8BB;">TCPSocket</span> *<span style="color: #DFAF8F;">clientSock</span> = <span style="color: #BFEBBF;">0</span>;
 std::ofstream DbgLogger;
 </pre>
 </div>
@@ -744,20 +792,50 @@ std::ofstream DbgLogger;
 </section>
 </section>
 <section>
-<section id="slide-sec-16">
+<section id="slide-sec-16" data-background="./images/bees.jpg" data-background-transition="none">
 <h2 id="sec-16">Unintended Bugs</h2>
-<ul>
-<li class="fragment -">Instant item steals</li>
-<li class="fragment -">Bear Assassins (Golden Guns)</li>
-<li class="fragment -">Cow Level visible (ragdoll fun)</li>
-<li class="fragment -">An Eggcellent Solution (delete other models)</li>
-<li class="fragment -">Cheat Engine</li>
-<li class="fragment -">Easy bear hack</li>
 
-</ul>
+</section>
+<section id="slide-sec-16-1" data-background="./images/theft.jpg" data-background-transition="none">
+<h3 id="sec-16-1">OmniTheft</h3>
+<aside class="notes">
+nil
+</aside>
+
+</section>
+<section id="slide-sec-16-2" data-background="./images/golden.jpg" data-background-transition="none">
+<h3 id="sec-16-2">Bearly Assasinated</h3>
+<aside class="notes">
+nil
+</aside>
+
+</section>
+<section id="slide-sec-16-3" data-background="./images/flying.jpg" data-background-transition="none">
+<h3 id="sec-16-3">Flying Bodies</h3>
+<aside class="notes">
+nil
+</aside>
+
+</section>
+<section id="slide-sec-16-4" data-background="./images/eggs.jpg" data-background-transition="none">
+<h3 id="sec-16-4">Eggcellent Solution</h3>
+<aside class="notes">
+nil
+</aside>
+
+</section>
+<section id="slide-sec-16-5" data-background="./images/engine.jpg" data-background-transition="none">
+<h3 id="sec-16-5">Cheat Engine</h3>
+<aside class="notes">
+nil
+</aside>
+
+</section>
+<section id="slide-sec-16-6" data-background="./images/cave.jpg" data-background-transition="none">
+<h3 id="sec-16-6">Spelunking</h3>
 <aside class="notes">
 <p>
-Explain the 
+Unintended solution killed via testing.
 </p>
 
 </aside>
@@ -792,32 +870,49 @@ Explain the
 <section>
 <section id="slide-sec-19">
 <h2 id="sec-19">Meta</h2>
-<ul>
-<li>Slides available at <a href="https://github.com/vector35/HackingGames">github.com/vector35/HackingGames</a></li>
-<li>Binary Ninja available at <a href="https://binary.ninja/">binary.ninja</a></li>
-<li>Credits / Thanks:</li>
-
-</ul>
 <div class="org-src-container">
 
-<pre  class="src src-text">Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
+<pre  class="src src-text">Thanks to:
+Dragon Sector Escape from Minecraft Writeup used with Permission:
+    http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Made with:
 Spacemacs: https://github.com/syl20bnr/spacemacs
 Org-Reveal: Export from org-mode straight to reveal.js html5 presentations:
     https://github.com/yjwen/org-reveal
+Using images from:
+Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
-Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
-It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
-Dragon Sector Escape from Minecraft Writeup used with Permission:
-    http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Any Bonds Today: http://en.wikipedia.org/wiki/Any_Bonds_Today (PD)
+It's Got Me Again: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again! (PD)
 Confused: https://flickr.com/photos/83633410@N07/7658225516 (CC BY-SA)
+Bugs: https://www.flickr.com/photos/jurvetson/3097134746/ (CC BY)
+Thief: https://www.flickr.com/photos/fhke/3335949405 (CC BY-SA)
+Golden Gun: https://www.flickr.com/photos/mrgarethm/14592496766 (CC BY)
+Flying: https://www.flickr.com/photos/scion02b/2765655302/ (CC BY)
+Eggs: https://www.flickr.com/photos/erix/131405474/ (CC BY)
+Engine: https://www.flickr.com/photos/michchap/14607705463/ (CC BY)
+Cave: https://www.flickr.com/photos/watchsmart/2059057874 (CC BY)
+Bees: http://wikimedia.org/wiki/File:-_Bee_swarm_on_a_bicycle_(1-5)_-.jpg
+  (CC BY-SA)
 </pre>
 </div>
 
 </section>
 </section>
 <section>
-<section id="slide-sec-20" data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
-<h2 id="sec-20">RANDOM 1</h2>
+<section id="slide-sec-20">
+<h2 id="sec-20"></h2>
+<ul>
+<li>Slides: <a href="https://github.com/vector35/HackingGames">github.com/vector35/HackingGames</a></li>
+<li>Binary Ninja: <a href="https://binary.ninja/">binary.ninja</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-21" data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
+<h2 id="sec-21">Random 1</h2>
 <aside class="notes">
 <p>
 Public Domain: <a href="http://en.wikipedia.org/wiki/Any_Bonds_Today">http://en.wikipedia.org/wiki/Any_Bonds_Today</a>
@@ -828,8 +923,8 @@ Public Domain: <a href="http://en.wikipedia.org/wiki/Any_Bonds_Today">http://en.
 </section>
 </section>
 <section>
-<section id="slide-sec-21" data-background="./images/rando2.gif" data-background-transition="none">
-<h2 id="sec-21">RANDOM 2</h2>
+<section id="slide-sec-22" data-background="./images/rando2.gif" data-background-transition="none">
+<h2 id="sec-22">Random 2</h2>
 <aside class="notes">
 <p>
 Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://en.wikipedia.org/wiki/It's_Got_Me_Again</a>!
@@ -840,8 +935,8 @@ Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://e
 </section>
 </section>
 <section>
-<section id="slide-sec-22" data-background="./images/rando3.gif" data-background-transition="none">
-<h2 id="sec-22">RANDOM 3</h2>
+<section id="slide-sec-23" data-background="./images/rando3.gif" data-background-transition="none">
+<h2 id="sec-23">Random 3</h2>
 <aside class="notes">
 <p>
 Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://en.wikipedia.org/wiki/It's_Got_Me_Again</a>!
@@ -852,8 +947,14 @@ Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://e
 </section>
 </section>
 <section>
-<section id="slide-sec-23" data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
-<h2 id="sec-23">We put on our robe and wizard hat</h2>
+<section id="slide-sec-24" data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
+<h2 id="sec-24">Bonus!</h2>
+<aside class="notes">
+<p>
+We put on our robe and wizard hats
+</p>
+
+</aside>
 </section>
 </section>
 </div>

@@ -47,7 +47,6 @@ going to like this talk.
 * Questions?
 :PROPERTIES:
 :reveal_background: ./images/confused.jpg
-:reveal_background_size: 720px
 :reveal_background_trans: none
 :END:      
 
@@ -134,28 +133,39 @@ One of the oldest events, always been attack-defense, pretty much defined the
 modern-attack defense style event.
 #+END_NOTES
 
-* Real World Impact
+* Real World Bugs
+:PROPERTIES:
+:reveal_background: ./images/bugs.jpg
+:reveal_background_trans: none
+:END:      
 
 #+BEGIN_NOTES
 #+END_NOTES
 
-** php
-- PHP in general is worthy of its own whole talk about CTF challenges
+** 
+[[./images/phplogo.png]]
 #+BEGIN_NOTES
+PHP in general is worthy of its own whole talk about CTF challenges
 The whipping boy of CTFs (and Stefan Esser), PHP is constantly getting picked
 on. You could fill a talk showing nothing but the awful ways PHP is abused and
 mocked. A couple of common targets for abuse are:
 #+END_NOTES
 *** fighting for equality
-#+BEGIN_SRC
-#+END_SRC
+[[./images/php.png]]
 #+BEGIN_NOTES
 When are two unequal things equal? If you ask PHP, pretty darn often. An empty
 array? Why yes, yes it is equal to any random string.
 #+END_NOTES
 
 *** type coercion 
-#+BEGIN_SRC
+#+BEGIN_SRC php
+<?php
+    $key = "key{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}";
+    $pass = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    if ( strcasecmp( $_GET['pass'], $pass ) == 0 ) {
+        echo($key);
+    }
+?>
 #+END_SRC
 #+BEGIN_NOTES
 This bug is particularly interesting since multiple CTFs have been bitten by it
@@ -168,7 +178,7 @@ CTF players were introduced to them through CTFs.
 #+END_NOTES
 
 *** php-cgi
-http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/
+[[http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/][eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823]]
 [[./images/eindbazen.png]]
 #+BEGIN_NOTES
 The third bug, however was an actual 0day that came from a CTF. It turns out one
@@ -178,13 +188,40 @@ example was the php-cgi vulnerability that Eindbazen found a few years ago.
 #+END_NOTES
 
 ** go go!
-- Bunyan's Revenge
-- PlaidCTF 2013
+Bunyan's Revenge (PlaidCTF 2013)
+#+BEGIN_SRC C
+    case ODOTPTR:
+        cgen(nl, res);
++       // explicit check for nil if struct is large enough
++       // that we might derive too big a pointer.
++       if(nl->type->type->width >= unmappedzero) {
++           regalloc(&n1, types[tptr], res);
++           gmove(res, &n1);
++           n1.op = OINDREG;
++           n1.type = types[TUINT8];
++           n1.xoffset = 0;
++           gins(ATESTB, nodintconst(0), &n1);
++           regfree(&n1);
++       }
+        if(n->xoffset != 0) {
+-           // explicit check for nil if struct is large enough
+-           // that we might derive too big a pointer.
+-           if(nl->type->type->width >= unmappedzero) {
+-               regalloc(&n1, types[tptr], res);
+-               gmove(res, &n1);
+-               n1.op = OINDREG;
+-               n1.type = types[TUINT8];
+-               n1.xoffset = 0;
+-               gins(ATESTB, nodintconst(0), &n1);
+-               regfree(&n1);
+-           }
+            ginscon(optoas(OADD, types[tptr]), n->xoffset, res);
+#+END_SRC
+
 #+BEGIN_NOTES
 - Real GO developers annoying about security, so...
 #+END_NOTES
 ** Pirate Danbi
-#+ATTR_REVEAL: :frag (- - )
 - bzip2
 - [[https://git.io/vvETK]] (ctf writeup repository)
 #+ATTR_REVEAL: :frag (-)
@@ -259,6 +296,8 @@ bool symbol__restricted_filename(const char *filename,
 * Free Tools!                                                        
 [[./images/freelabor.jpg]]
 #+BEGIN_NOTES
+Crowd-sourced bugs.
+
 Want someone to build a free IDA loader for you if one doesn't exist for the
 platform you're working on? Just release a CTF challenge on it, and someone will
 publish it!  Somewhat kidding about this, but it has happened multiple times. I
@@ -316,6 +355,7 @@ solve it multiple ways.
 #+BEGIN_NOTES
 January 27, 2012
 http://andrewl.dreamhosters.com/blog/2012-02-07/
+Explain context of SMT solvers to modern exploitation
 #+END_NOTES
 
 ** Blocky
@@ -335,7 +375,7 @@ Four stage, 4-bit shift register
 #+END_NOTES
 
 ** Plaid CTF v1
-https://sysexit.files.wordpress.com/2012/04/worldmap.png
+[[./images/worldmap.png]]
 #+BEGIN_NOTES
 Apr 27, 2012 - Apr 28, 2012
 #+END_NOTES
@@ -347,7 +387,7 @@ April 19, 2013 - April 20, 2013
 #+END_NOTES
 
 ** Pwn Adventure (2)
-#+REVEAL_HTML: <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
+#+REVEAL_HTML: <video width="960" height="540" controls data-autoplay><source src="media/gits2014teaser-small.mp4" type="video/mp4"></video>
 #+BEGIN_NOTES
 Jan 17, 2014 — Jan 19, 2014
 #+END_NOTES
@@ -393,11 +433,11 @@ end
 
 ** PwnAdventure3Hacks Github
 - DirectX Overlay
-- https://github.com/zku/PwnAdventure3Hacks
+- [[https://github.com/zku/PwnAdventure3Hacks][github.com/zku/PwnAdventure3Hacks]]
 [[./images/overlay.png]]
 
 ** Samurai PwnHax.cpp
-- https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f
+[[https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f][gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f]]
 #+BEGIN_SRC C
 #include <Windows.h>
 #include <detours.h>
@@ -438,15 +478,58 @@ std::ofstream DbgLogger;
 #+END_SRC
 
 * Unintended Bugs
-#+ATTR_REVEAL: :frag (- - - - - -)
-- Instant item steals
-- Bear Assassins (Golden Guns)
-- Cow Level visible (ragdoll fun)
-- An Eggcellent Solution (delete other models)
-- Cheat Engine
-- Easy bear hack
+:PROPERTIES:
+:reveal_background: ./images/bees.jpg
+:reveal_background_trans: none
+:END:      
+
+** OmniTheft
+:PROPERTIES:
+:reveal_background: ./images/theft.jpg
+:reveal_background_trans: none
+:END:      
 #+BEGIN_NOTES
-Explain the 
+#+END_NOTES
+
+** Bearly Assasinated
+:PROPERTIES:
+:reveal_background: ./images/golden.jpg
+:reveal_background_trans: none
+:END:      
+#+BEGIN_NOTES
+#+END_NOTES
+
+** Flying Bodies
+:PROPERTIES:
+:reveal_background: ./images/flying.jpg
+:reveal_background_trans: none
+:END:      
+#+BEGIN_NOTES
+#+END_NOTES
+
+** Eggcellent Solution
+:PROPERTIES:
+:reveal_background: ./images/eggs.jpg
+:reveal_background_trans: none
+:END:      
+#+BEGIN_NOTES
+#+END_NOTES
+
+** Cheat Engine
+:PROPERTIES:
+:reveal_background: ./images/engine.jpg
+:reveal_background_trans: none
+:END:      
+#+BEGIN_NOTES
+#+END_NOTES
+
+** Spelunking
+:PROPERTIES:
+:reveal_background: ./images/cave.jpg
+:reveal_background_trans: none
+:END:      
+#+BEGIN_NOTES
+Unintended solution killed via testing.
 #+END_NOTES
 
 * Useful CTF Tools
@@ -462,23 +545,36 @@ Explain the
 - [[https://github.com/ctfs/][github.com/ctfs]] - best maintained collection of writeups
 
 * Meta
-- Slides available at [[https://github.com/vector35/HackingGames][github.com/vector35/HackingGames]]
-- Binary Ninja available at [[https://binary.ninja/][binary.ninja]]
-- Credits / Thanks:
 #+BEGIN_SRC text
-Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
+Thanks to:
+Dragon Sector Escape from Minecraft Writeup used with Permission:
+	http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Made with:
 Spacemacs: https://github.com/syl20bnr/spacemacs
 Org-Reveal: Export from org-mode straight to reveal.js html5 presentations:
 	https://github.com/yjwen/org-reveal
+Using images from:
+Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
 Toy Soldiers: http://www.flickr.com/photos/janramroth/2264184078/ (CC BY)
-Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
-It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
-Dragon Sector Escape from Minecraft Writeup used with Permission:
-	http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Any Bonds Today: http://en.wikipedia.org/wiki/Any_Bonds_Today (PD)
+It's Got Me Again: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again! (PD)
 Confused: https://flickr.com/photos/83633410@N07/7658225516 (CC BY-SA)
+Bugs: https://www.flickr.com/photos/jurvetson/3097134746/ (CC BY)
+Thief: https://www.flickr.com/photos/fhke/3335949405 (CC BY-SA)
+Golden Gun: https://www.flickr.com/photos/mrgarethm/14592496766 (CC BY)
+Flying: https://www.flickr.com/photos/scion02b/2765655302/ (CC BY)
+Eggs: https://www.flickr.com/photos/erix/131405474/ (CC BY)
+Engine: https://www.flickr.com/photos/michchap/14607705463/ (CC BY)
+Cave: https://www.flickr.com/photos/watchsmart/2059057874 (CC BY)
+Bees: http://wikimedia.org/wiki/File:-_Bee_swarm_on_a_bicycle_(1-5)_-.jpg
+  (CC BY-SA)
 #+END_SRC
 
-* RANDOM 1
+* 
+- Slides: [[https://github.com/vector35/HackingGames][github.com/vector35/HackingGames]]
+- Binary Ninja: [[https://binary.ninja/][binary.ninja]]
+
+* Random 1
 :PROPERTIES:
 :reveal_background: ./images/rando1.gif
 :reveal_background_size: 720px
@@ -488,7 +584,7 @@ Confused: https://flickr.com/photos/83633410@N07/7658225516 (CC BY-SA)
 Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 #+END_NOTES
 
-* RANDOM 2
+* Random 2
 :PROPERTIES:
 :reveal_background: ./images/rando2.gif
 :reveal_background_trans: none
@@ -497,7 +593,7 @@ Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 #+END_NOTES
 
-* RANDOM 3
+* Random 3
 :PROPERTIES:
 :reveal_background: ./images/rando3.gif
 :reveal_background_trans: none
@@ -506,8 +602,11 @@ Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 #+END_NOTES
 
-* We put on our robe and wizard hat
+* Bonus!
 :PROPERTIES:
 :reveal_background: ./images/MMIBH-team-photo.jpg
 :reveal_background_trans: none
 :END:
+#+BEGIN_NOTES
+ We put on our robe and wizard hats
+#+END_NOTES
