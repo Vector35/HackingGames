@@ -1,0 +1,1 @@
+Reveal.configure{history:true})
