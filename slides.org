@@ -2,10 +2,10 @@
 #+Author: Rusty Wagner, Jordan Wiens
 #+Email: rusty@vector35.com, jordan@vector35.com
 #+STARTUP: showall
-#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:nil reveal_control:t
+#+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
 #+OPTIONS: reveal_mathjax:nil reveal_rolling_links:nil reveal_keyboard:t reveal_overview:t num:nil
-#+OPTIONS: reveal_width:1280 reveal_height:720 reveal_title_slide:nil
-#+OPTIONS: toc:0
+#+OPTIONS: reveal_width:1024 reveal_height:768 reveal_title_slide:nil
+#+OPTIONS: toc:nil
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.1
 #+REVEAL_MAX_SCALE: 3.5
@@ -21,35 +21,43 @@
 #+MACRO: SP @@latex:\,@@ @@html:&nbsp;@@
 
 * Hacking Games{{{NL}}}in a{{{NL}}}Hacked Game                       
-:PROPERTIES:
-:CUSTOM_ID: titleslide
-:reveal_background: #fff
-:reveal_background_trans: none
-:reveal_center: t
-:END:      
 [[./images/rusty-hs.jpg]] [[./images/jordan-hs.jpg]] {{{NL}}}
-[[./images/wide-white.png]]
+[[./images/wide-black-small.png]]
+#+BEGIN_NOTES
+Hi, I'm Jordan -- and I'm Rusty
+#+END_NOTES
 
 * BIO                                                                
 - CTF junkies
 - Worked for Raytheon SI
 - Quit and founded Vector 35 to do "CTF stuff"
 
-* Is this talk for you?                                              
-#+ATTR_REVEAL: :frag t
-- Did you played Pwn Adventure 3 during Ghost in the Shellcode this year?
+* Is this talk for you?
+#+ATTR_REVEAL: :frag (- - - -)
+- Did you play Pwn Adventure 3 during Ghost in the Shellcode this year?
 - Have you ever played a CTF before?
 - Have you heard of CTFs before?
 - Have you played or hacked a video game?
 #+BEGIN_NOTES
-Raise your hands and keep them up if any of the following apply to you.
-If you still have your hand down, just go ahead and leave now, you're probably not going to like this talk.
+Raise your hands and keep them up if any of the following apply to you.  If you
+still have your hand down, just go ahead and leave now, you're probably not
+going to like this talk.
 #+END_NOTES
+
+* Questions?
+:PROPERTIES:
+:reveal_background: ./images/confused.jpg
+:reveal_background_size: 720px
+:reveal_background_trans: none
+:END:      
 
 * Join Us!                                                           
 - [[http://pwnadventure.com/]]
-- Download the client for your platform (GPU recommended)
-- We'll hop online for a demo later on
+- Download client (GPU recommended)
+- Online demo at the end of the talk
+#+BEGIN_NOTES
+Information about the client being available, the format, gaming.
+#+END_NOTES
 
 * Motivation                                                         
 #+BEGIN_NOTES
@@ -65,6 +73,7 @@ gaming.
 	specifically annual revenue of the video game industry. It's a $90B (or
 	maybe more depending on who's doing the counting) industry, and is only
 	expected to grow.
+
 	http://www.gartner.com/newsroom/id/2614915 (predicted 100B)
 	Digi-Capital_Global_Games_Investment_Review_2015_Executive_Summary.pdf
 #+END_NOTES
@@ -99,8 +108,8 @@ with a bug for a priv-esc.
 #+REVEAL_HTML: <canvas id="chart1" width="800" height="600"></canvas>
 #+BEGIN_NOTES
 Likewise, there's an interesting parallel trend in the CTF world as well. Not
-are CTFs taking off in popularity, but (as Chris Eagle discussed here two years
-ago, there's increasingly real-world spill-over between them.
+only are CTFs taking off in popularity, but (as Chris Eagle discussed here two
+years ago), there's increasingly real-world spill-over between them.
 #+END_NOTES
 
 * Brief History of CTFs                                              
@@ -114,14 +123,60 @@ ago, there's increasingly real-world spill-over between them.
 - Full Spectrum (or Attack/Defense)
 - WarGames
 
-* Not Just for Fun (Real World impact)                               
+** DEF CON
+- One of the earliest (1996)
+- Beginning of "modern" A/D (2004/2005)
+- Kenshoto (2005-2009)
+- DDTEK (2010-2013)
+- LegitBS (2014-Current)
+#+BEGIN_NOTES
+One of the oldest events, always been attack-defense, pretty much defined the
+modern-attack defense style event.
+#+END_NOTES
 
-** php-cgi
+* Real World Impact
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+** php
+- PHP in general is worthy of its own whole talk about CTF challenges
+#+BEGIN_NOTES
+The whipping boy of CTFs (and Stefan Esser), PHP is constantly getting picked
+on. You could fill a talk showing nothing but the awful ways PHP is abused and
+mocked. A couple of common targets for abuse are:
+#+END_NOTES
+*** fighting for equality
+#+BEGIN_SRC
+#+END_SRC
+#+BEGIN_NOTES
+When are two unequal things equal? If you ask PHP, pretty darn often. An empty
+array? Why yes, yes it is equal to any random string.
+#+END_NOTES
+
+*** type coercion 
+#+BEGIN_SRC
+#+END_SRC
+#+BEGIN_NOTES
+This bug is particularly interesting since multiple CTFs have been bitten by it
+unintentionally in their own score infrastructure. You'd think people would have
+figured it out by now with all the challenges highlighting how broken it is, but
+apparently not.
+
+Note though that these two bugs weren't specifically found in a CTF, though many
+CTF players were introduced to them through CTFs.
+#+END_NOTES
+
+*** php-cgi
 http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/
 [[./images/eindbazen.png]]
 #+BEGIN_NOTES
-Eindbazen
+The third bug, however was an actual 0day that came from a CTF. It turns out one
+of the problems with a CTF is untended solutions.  Sometimes those unintended
+solutions result in accidental 0day (more often than you'd think). One such
+example was the php-cgi vulnerability that Eindbazen found a few years ago.
 #+END_NOTES
+
 ** go go!
 - Bunyan's Revenge
 - PlaidCTF 2013
@@ -129,17 +184,19 @@ Eindbazen
 - Real GO developers annoying about security, so...
 #+END_NOTES
 ** Pirate Danbi
-#+ATTR_REVEAL: :frag t
+#+ATTR_REVEAL: :frag (- - )
 - bzip2
-- https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi
-- [[./images/beist.png]]
+- [[https://git.io/vvETK]] (ctf writeup repository)
+#+ATTR_REVEAL: :frag (-)
+[[./images/beist.png]]
+
 #+BEGIN_NOTES
 Interesting to note that in real CTFs, people usually don't look to the real
 libraries initially since it would typically make the events take up too much
 time -- or at least, if we always were investigating things it would.
 #+END_NOTES
 ** lollerskaters privesc
-#+ATTR_REVEAL: :frag t
+#+ATTR_REVEAL: :frag (appear)
 #+BEGIN_SRC
 =============================================================================
 FreeBSD-SA-11:05.unix                                       Security Advisory
@@ -171,15 +228,14 @@ https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc
 #+END_NOTES
 ** wireshark 0day
 [[./images/wireshark.jpg]]
-
 #+BEGIN_NOTES
 http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs
 #+END_NOTES
-** link to the future
-#+ATTR_REVEAL: :frag t
-- guesspw from codegate CTF
+** guesspw
+#+ATTR_REVEAL: :frag (appear -)
+- challenge from codegate CTF
 - MAXSYMLINKS
-#+ATTR_REVEAL: :frag t
+#+ATTR_REVEAL: :frag (appear)
 #+BEGIN_SRC C
 bool symbol__restricted_filename(const char *filename,
 				 const char *restricted_filename)
@@ -209,45 +265,19 @@ publish it!  Somewhat kidding about this, but it has happened multiple times. I
 know multiple people who've released challenges specifically for that, and even
 as recently as a few months ago, a Nintendo 3DSX loader for IDA was created
 specifically because of a CTF challenge.
+
 https://github.com/0xEBFE/3DSX-IDA-PRO-Loader
 #+END_NOTES
 
-* Gaming Challenges in CTFs 
-(a most certainly not exhaustive list)
+* CTF Gaming Challenges 
+(a most certainly non-exhaustive list)
 #+BEGIN_NOTES
 15:00 mark
 - PPP/GitS one upping / inspiration (explain PPP/GitS!)
 - Complexity on the rise
 #+END_NOTES
 
-** Hackquest
-#+BEGIN_SRC 
-$ nc hackquest.ghostintheshellcode.com 7331
-The 1337 Adventures of an Unknown Hacker
- 
-What is your name? HACKER
-Welcome, HACKER, to your adventure.
- 
-You are in your bedroom.  The room is spinning and you are very tired.
-> look
-There is a can of Red Bull here.
-> get can
-You are in your bedroom.  The room is spinning and you are very tired.
-You have a can of Red Bull.
-> use can
-You feel refreshed.
- 
-You are in your bedroom.  There is a computer on your desk.  To the south is
-the door leading to the rest of the apartment.
-#+END_SRC
-
-#+BEGIN_NOTES
-January 27, 2012
-Evolved over time. Started as "hackquest", a very simple game like adventure,
-all the way to a full MMORPG three years later
-#+END_NOTES
-
-** Choose Your Pwn Adventure (1)
+** 
 #+BEGIN_SRC 
           ________
          / ____/ /_  ____  ____  ________     __  ______  __  _______
@@ -288,6 +318,13 @@ January 27, 2012
 http://andrewl.dreamhosters.com/blog/2012-02-07/
 #+END_NOTES
 
+** Blocky
+[[./images/blocky-03-westdetail.png]]
+#+BEGIN_NOTES
+January 27, 2012
+http://andrewl.dreamhosters.com/blog/2012-02-07/
+#+END_NOTES
+
 ** Escape from Minecraft
 - [[http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html][Dragon Sector Writeup]]
 [[./images/logic_overview.png]]
@@ -309,7 +346,7 @@ Apr 27, 2012 - Apr 28, 2012
 April 19, 2013 - April 20, 2013
 #+END_NOTES
 
-** Choose Your Pwn Adventure (2)
+** Pwn Adventure (2)
 #+REVEAL_HTML: <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
 #+BEGIN_NOTES
 Jan 17, 2014 — Jan 19, 2014
@@ -317,7 +354,6 @@ Jan 17, 2014 — Jan 19, 2014
 
 * Pwn Adventure 3 Demo
 #+BEGIN_NOTES
-25-27:00 minute mark
 #+END_NOTES
 ** Challenges
 - Unbearable Revenge
@@ -330,7 +366,6 @@ Jan 17, 2014 — Jan 19, 2014
 
 * 3rd Party Hacks
 #+BEGIN_NOTES
-45:00-50:00 minute mark
 #+END_NOTES
 ** LD＿PRELOAD
 
@@ -403,28 +438,32 @@ std::ofstream DbgLogger;
 #+END_SRC
 
 * Unintended Bugs
-#+ATTR_REVEAL: :frag t
+#+ATTR_REVEAL: :frag (- - - - - -)
 - Instant item steals
 - Bear Assassins (Golden Guns)
 - Cow Level visible (ragdoll fun)
 - An Eggcellent Solution (delete other models)
-- Cheat Engine 
+- Cheat Engine
+- Easy bear hack
+#+BEGIN_NOTES
+Explain the 
+#+END_NOTES
 
 * Useful CTF Tools
-- xortool https://github.com/hellman/xortool
-- pwntols https://github.com/Gallopsled/pwntools
-- qira https://github.com/BinaryAnalysisPlatform/qira / http://qira.me
+- xortool [[https://github.com/hellman/xortool][github.com/hellman/xortool]]
+- pwntools [[https://github.com/Gallopsled/pwntools][github.com/Gallopsled/pwntools]]
+- qira [[https://github.com/BinaryAnalysisPlatform/qira][github.com/BinaryAnalysisPlatform/qira]] / [[http://qira.me][qira.me]]
 
 * More CTF Resources
 
-- [[https://ctftime.org/]] - Events, team scores, writeups
-- [[http://captf.com/]] - dump site, mirrors, calendar
-- http://golden-flags.com/ - yearly CTF awards
-- http://github.com/ctfs/ - best maintained collection of writeups
+- [[https://ctftime.org/][ctftime.org]] - Events, team scores, writeups
+- [[http://captf.com/][captf.com]] - dump site, mirrors, calendar
+- [[http://golden-flags.com/][golden-flags.com]] - yearly CTF awards
+- [[https://github.com/ctfs/][github.com/ctfs]] - best maintained collection of writeups
 
-* Questions?
-- Slides available at [[http://github.com/vector35/HackingGames]]
-- Binary Ninja available at [[http://binary.ninja/]]
+* Meta
+- Slides available at [[https://github.com/vector35/HackingGames][github.com/vector35/HackingGames]]
+- Binary Ninja available at [[https://binary.ninja/][binary.ninja]]
 - Credits / Thanks:
 #+BEGIN_SRC text
 Free Labor Image: https://www.flickr.com/photos/donkeyhotey/5501554002 (CC BY)
@@ -436,6 +475,7 @@ Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 Dragon Sector Escape from Minecraft Writeup used with Permission:
 	http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Confused: https://flickr.com/photos/83633410@N07/7658225516 (CC BY-SA)
 #+END_SRC
 
 * RANDOM 1
@@ -443,7 +483,7 @@ Dragon Sector Escape from Minecraft Writeup used with Permission:
 :reveal_background: ./images/rando1.gif
 :reveal_background_size: 720px
 :reveal_background_trans: none
-:END:
+:END:      
 #+BEGIN_NOTES
 Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 #+END_NOTES
@@ -451,6 +491,15 @@ Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 * RANDOM 2
 :PROPERTIES:
 :reveal_background: ./images/rando2.gif
+:reveal_background_trans: none
+:END:
+#+BEGIN_NOTES
+Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
+#+END_NOTES
+
+* RANDOM 3
+:PROPERTIES:
+:reveal_background: ./images/rando3.gif
 :reveal_background_trans: none
 :END:
 #+BEGIN_NOTES

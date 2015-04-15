@@ -25,134 +25,152 @@
 <div class="slides">
 
 <section>
-<section id="titleslide"  data-background="#fff" data-background-transition="none">
-
-<h2>Hacking Games <BR>in a <BR>Hacked Game</h2>
+<section id="slide-sec-1">
+<h2 id="sec-1">Hacking Games <BR>in a <BR>Hacked Game</h2>
 <p>
 <img src="./images/rusty-hs.jpg" alt="rusty-hs.jpg" /> <img src="./images/jordan-hs.jpg" alt="jordan-hs.jpg" />  <BR>
-<img src="./images/wide-white.png" alt="wide-white.png" />
+<img src="./images/wide-black-small.png" alt="wide-black-small.png" />
 </p>
-</section>
+<aside class="notes">
+<p>
+Hi, I'm Jordan &#x2013; and I'm Rusty
+</p>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-2" >
+<section id="slide-sec-2">
+<h2 id="sec-2">BIO</h2>
+<ul>
+<li>CTF junkies</li>
+<li>Worked for Raytheon SI</li>
+<li>Quit and founded Vector 35 to do "CTF stuff"</li>
 
-<h2>BIO</h2>
-<ul class="org-ul">
-<li>CTF junkies
-</li>
-<li>Worked for Raytheon SI
-</li>
-<li>Quit and founded Vector 35 to do "CTF stuff"
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-3" >
+<section id="slide-sec-3">
+<h2 id="sec-3">Is this talk for you?</h2>
+<ul>
+<li class="fragment -">Did you play Pwn Adventure 3 during Ghost in the Shellcode this year?</li>
+<li class="fragment -">Have you ever played a CTF before?</li>
+<li class="fragment -">Have you heard of CTFs before?</li>
+<li class="fragment -">Have you played or hacked a video game?</li>
 
-<h2>Is this talk for you?</h2>
-<ul class="org-ul">
-<li class="fragment">Did you played Pwn Adventure 3 during Ghost in the Shellcode this year?
-</li>
-<li class="fragment">Have you ever played a CTF before?
-</li>
-<li class="fragment">Have you heard of CTFs before?
-</li>
-<li class="fragment">Have you played or hacked a video game?
-</li>
 </ul>
 <aside class="notes">
 <p>
-Raise your hands and keep them up if any of the following apply to you.
-If you still have your hand down, just go ahead and leave now, you're probably not going to like this talk.
+Raise your hands and keep them up if any of the following apply to you.  If you
+still have your hand down, just go ahead and leave now, you're probably not
+going to like this talk.
 </p>
+
 </aside>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-4" >
+<section id="slide-sec-4" data-background="./images/confused.jpg" data-background-size="720px" data-background-transition="none">
+<h2 id="sec-4">Questions?</h2>
 
-<h2>Join Us!</h2>
-<ul class="org-ul">
-<li><a href="http://pwnadventure.com/">http://pwnadventure.com/</a>
-</li>
-<li>Download the client for your platform (GPU recommended)
-</li>
-<li>We'll hop online for a demo later on
-</li>
+</section>
+</section>
+<section>
+<section id="slide-sec-5">
+<h2 id="sec-5">Join Us!</h2>
+<ul>
+<li><a href="http://pwnadventure.com/">http://pwnadventure.com/</a></li>
+<li>Download client (GPU recommended)</li>
+<li>Online demo at the end of the talk</li>
+
 </ul>
-</section>
+<aside class="notes">
+<p>
+Information about the client being available, the format, gaming.
+</p>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-5" >
-
-<h2>Motivation</h2>
+<section id="slide-sec-6">
+<h2 id="sec-6">Motivation</h2>
 <aside class="notes">
 <p>
 First, a brief note on the motivation for the talk. We're really talking about
 the growth of both CTFs and gaming together, and how they're related. So first,
 gaming.
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-6" >
+<section id="slide-sec-7">
+<h2 id="sec-7">Game Industry Profits</h2>
 
-<h2>Game Industry Profits</h2>
-<img src="./images/digicapital.png" alt="digicapital.png" />
+<div class="figure">
+<p><img src="./images/digicapital.png" alt="digicapital.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
 Here comes the obligatory "Stuff over time" graphs. In this case, money,
 specifically annual revenue of the video game industry. It's a $90B (or
 maybe more depending on who's doing the counting) industry, and is only
 expected to grow.
+</p>
+
+<p>
 <a href="http://www.gartner.com/newsroom/id/2614915">http://www.gartner.com/newsroom/id/2614915</a> (predicted 100B)
 Digi-Capital<sub>Global</sub><sub>Games</sub><sub>Investment</sub><sub>Review</sub><sub>2015</sub><sub>Executive</sub><sub>Summary</sub>.pdf
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-7" >
+<section id="slide-sec-8">
+<h2 id="sec-8">Hacking (in?) the Game Industry</h2>
+<ul>
+<li>As old as the game industry itself</li>
+<li>Led to the rise of the demo scene, cracking, trainers, etc</li>
 
-<h2>Hacking (in?) the Game Industry</h2>
-<ul class="org-ul">
-<li>As old as the game industry itself
-</li>
-<li>Led to the rise of the demo scene, cracking, trainers, etc
-</li>
 </ul>
-<img src="./images/sanderfocus_animation.gif" alt="sanderfocus_animation.gif" />
+
+<div class="figure">
+<p><img src="./images/sanderfocus_animation.gif" alt="sanderfocus_animation.gif" />
+</p>
+</div>
 
 </section>
-<section id="sec-7-1" >
+<section id="slide-sec-8-1">
+<h3 id="sec-8-1">Notable Examples</h3>
+<ul>
+<li>BNET.D (interop)</li>
+<li>Glider (interop)</li>
+<li>Diablo 3 Auction House (vuln)</li>
 
-<h3>Notable Examples</h3>
-<ul class="org-ul">
-<li>BNET.D (interop)
-</li>
-<li>Glider (interop)
-</li>
-<li>Diablo 3 Auction House (vuln)
-</li>
 </ul>
-<img src="./images/blizzard.jpg" alt="blizzard.jpg" />
+
+<div class="figure">
+<p><img src="./images/blizzard.jpg" alt="blizzard.jpg" />
+</p>
+</div>
 
 </section>
-<section id="sec-7-2" >
+<section id="slide-sec-8-2">
+<h3 id="sec-8-2">Code-Signing</h3>
+<ul>
+<li>Game platforms as early bellwethers</li>
 
-<h3>Code-Signing</h3>
-<ul class="org-ul">
-<li>Game platforms as early bellwethers
-</li>
 </ul>
 <p>
 <img src="./images/twilight-hack.jpg" alt="twilight-hack.jpg" /> 
@@ -166,107 +184,183 @@ were some of the first to implement code-signing. The hacks from those days
 today. Instead of a save game file and video game, it's a signed kernel module
 with a bug for a priv-esc.
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-8"  data-state="chart1">
-
-<h2>Growth of CTFs</h2>
+<section id="slide-sec-9" data-state="chart1">
+<h2 id="sec-9">Growth of CTFs</h2>
 <canvas id="chart1" width="800" height="600"></canvas>
 <aside class="notes">
 <p>
 Likewise, there's an interesting parallel trend in the CTF world as well. Not
-are CTFs taking off in popularity, but (as Chris Eagle discussed here two years
-ago, there's increasingly real-world spill-over between them.
+only are CTFs taking off in popularity, but (as Chris Eagle discussed here two
+years ago), there's increasingly real-world spill-over between them.
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-9" >
+<section id="slide-sec-10">
+<h2 id="sec-10">Brief History of CTFs</h2>
 
-<h2>Brief History of CTFs</h2>
-<img src="./images/two-toy-soldiers.jpg" alt="two-toy-soldiers.jpg" />
+<div class="figure">
+<p><img src="./images/two-toy-soldiers.jpg" alt="two-toy-soldiers.jpg" />
+</p>
+</div>
 <aside class="notes">
+nil
 </aside>
 
 </section>
-<section id="sec-9-1" >
+<section id="slide-sec-10-1">
+<h3 id="sec-10-1">Basics</h3>
+<ul>
+<li>Red Team (Jeopardy Style)</li>
+<li>Blue Team ("Defensive")</li>
+<li>Full Spectrum (or Attack/Defense)</li>
+<li>WarGames</li>
 
-<h3>Basics</h3>
-<ul class="org-ul">
-<li>Red Team (Jeopardy Style)
-</li>
-<li>Blue Team ("Defensive")
-</li>
-<li>Full Spectrum (or Attack/Defense)
-</li>
-<li>WarGames
-</li>
 </ul>
-</section>
 
+</section>
+<section id="slide-sec-10-2">
+<h3 id="sec-10-2">DEF CON</h3>
+<ul>
+<li>One of the earliest (1996)</li>
+<li>Beginning of "modern" A/D (2004/2005)</li>
+<li>Kenshoto (2005-2009)</li>
+<li>DDTEK (2010-2013)</li>
+<li>LegitBS (2014-Current)</li>
+
+</ul>
+<aside class="notes">
+<p>
+One of the oldest events, always been attack-defense, pretty much defined the
+modern-attack defense style event.
+</p>
+
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-10" >
+<section id="slide-sec-11">
+<h2 id="sec-11">Real World Impact</h2>
+<aside class="notes">
+nil
+</aside>
 
-<h2>Not Just for Fun (Real World impact)</h2>
 </section>
-<section id="sec-10-1" >
+<section id="slide-sec-11-1">
+<h3 id="sec-11-1">php</h3>
+<ul>
+<li>PHP in general is worthy of its own whole talk about CTF challenges</li>
 
-<h3>php-cgi</h3>
+</ul>
+<aside class="notes">
+<p>
+The whipping boy of CTFs (and Stefan Esser), PHP is constantly getting picked
+on. You could fill a talk showing nothing but the awful ways PHP is abused and
+mocked. A couple of common targets for abuse are:
+</p>
+
+</aside>
+</section>
+<section id="slide-sec-11-1-1">
+<h4 id="sec-11-1-1">fighting for equality</h4>
+<pre  class="example">
+</pre>
+<aside class="notes">
+<p>
+When are two unequal things equal? If you ask PHP, pretty darn often. An empty
+array? Why yes, yes it is equal to any random string.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-sec-11-1-2">
+<h4 id="sec-11-1-2">type coercion</h4>
+<pre  class="example">
+</pre>
+<aside class="notes">
+<p>
+This bug is particularly interesting since multiple CTFs have been bitten by it
+unintentionally in their own score infrastructure. You'd think people would have
+figured it out by now with all the challenges highlighting how broken it is, but
+apparently not.
+</p>
+
+<p>
+Note though that these two bugs weren't specifically found in a CTF, though many
+CTF players were introduced to them through CTFs.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-sec-11-1-3">
+<h4 id="sec-11-1-3">php-cgi</h4>
 <p>
 <a href="http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/">http://eindbazen.net/2012/05/php-cgi-advisory-cve-2012-1823/</a>
 <img src="./images/eindbazen.png" alt="eindbazen.png" />
 </p>
 <aside class="notes">
 <p>
-Eindbazen
+The third bug, however was an actual 0day that came from a CTF. It turns out one
+of the problems with a CTF is untended solutions.  Sometimes those unintended
+solutions result in accidental 0day (more often than you'd think). One such
+example was the php-cgi vulnerability that Eindbazen found a few years ago.
 </p>
-</aside>
-</section>
-<section id="sec-10-2" >
 
-<h3>go, go!</h3>
-<ul class="org-ul">
-<li>Bunyan's Revenge
-</li>
-<li>PlaidCTF 2013
-</li>
+</aside>
+
+</section>
+<section id="slide-sec-11-2">
+<h3 id="sec-11-2">go go!</h3>
+<ul>
+<li>Bunyan's Revenge</li>
+<li>PlaidCTF 2013</li>
+
 </ul>
 <aside class="notes">
 <ul class="org-ul">
 <li>Real GO developers annoying about security, so&#x2026;
 </li>
 </ul>
+
 </aside>
 </section>
-<section id="sec-10-3" >
+<section id="slide-sec-11-3">
+<h3 id="sec-11-3">Pirate Danbi</h3>
+<ul>
+<li class="fragment -">bzip2</li>
+<li class="fragment -"><a href="https://git.io/vvETK">https://git.io/vvETK</a> (ctf writeup repository)</li>
 
-<h3>Pirate Danbi</h3>
-<ul class="org-ul">
-<li class="fragment">bzip2
-</li>
-<li class="fragment"><a href="https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi">https://github.com/ctfs/write-ups-2015/tree/master/codegate-ctf-2015/reversing/pirate-danbi</a>
-</li>
-<li class="fragment"><img src="./images/beist.png" alt="beist.png" />
-</li>
 </ul>
+
+<div class="figure">
+<p><img src="./images/beist.png" alt="beist.png" class="fragment (-)" />
+</p>
+</div>
+
 <aside class="notes">
 <p>
 Interesting to note that in real CTFs, people usually don't look to the real
 libraries initially since it would typically make the events take up too much
 time &#x2013; or at least, if we always were investigating things it would.
 </p>
+
 </aside>
 </section>
-<section id="sec-10-4" >
-
-<h3>lollerskaters privesc</h3>
-<pre  class="fragment">
+<section id="slide-sec-11-4">
+<h3 id="sec-11-4">lollerskaters privesc</h3>
+<pre  class="fragment (appear)">
 =============================================================================
 FreeBSD-SA-11:05.unix                                       Security Advisory
                                                           The FreeBSD Project
@@ -296,57 +390,62 @@ UNIX-domain socket addresses into the correct size of structure.
 <p>
 <a href="https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc">https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc</a>
 </p>
+
 </aside>
 </section>
-<section id="sec-10-5" >
+<section id="slide-sec-11-5">
+<h3 id="sec-11-5">wireshark 0day</h3>
 
-<h3>wireshark 0day</h3>
-<img src="./images/wireshark.jpg" alt="wireshark.jpg" />
-
+<div class="figure">
+<p><img src="./images/wireshark.jpg" alt="wireshark.jpg" />
+</p>
+</div>
 <aside class="notes">
 <p>
 <a href="http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs">http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs</a>
 </p>
+
 </aside>
 </section>
-<section id="sec-10-6" >
+<section id="slide-sec-11-6">
+<h3 id="sec-11-6">guesspw</h3>
+<ul>
+<li class="fragment appear">challenge from codegate CTF</li>
+<li class="fragment -">MAXSYMLINKS</li>
 
-<h3>link to the future</h3>
-<ul class="org-ul">
-<li class="fragment">guesspw from codegate CTF
-</li>
-<li class="fragment">MAXSYMLINKS
-</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="fragment"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
-                 <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">restricted_filename</span><span style="color: #DCDCCC;">)</span>
-<span style="color: #DCDCCC;">{</span>
-    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">restricted</span> = <span style="color: #BFEBBF;">false</span>;
+<pre  class="fragment (appear)">bool symbol__restricted_filename(const char *filename,
+                 const char *restricted_filename)
+{
+    bool restricted = false;
 
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>symbol_conf.kptr_restrict<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
-        <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">r</span> = realpath<span style="color: #D0BF8F;">(</span>filename, <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span>;
+    if (symbol_conf.kptr_restrict) {
+        char *r = realpath(filename, NULL);
 
-        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>r != <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-            restricted = strcmp<span style="color: #93E0E3;">(</span>r, restricted_filename<span style="color: #93E0E3;">)</span> == 0;
-            free<span style="color: #93E0E3;">(</span>r<span style="color: #93E0E3;">)</span>;
-            <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
-        <span style="color: #D0BF8F;">}</span>
-    <span style="color: #BFEBBF;">}</span>
+        if (r != NULL) {
+            restricted = strcmp(r, restricted_filename) == 0;
+            free(r);
+            return restricted;
+        }
+    }
 
-    <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
-<span style="color: #DCDCCC;">}</span>
+    return restricted;
+}
 </pre>
 </div>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-11" >
+<section id="slide-sec-12">
+<h2 id="sec-12">Free Tools!</h2>
 
-<h2>Free Tools!</h2>
-<img src="./images/freelabor.jpg" alt="freelabor.jpg" />
+<div class="figure">
+<p><img src="./images/freelabor.jpg" alt="freelabor.jpg" />
+</p>
+</div>
 <aside class="notes">
 <p>
 Want someone to build a free IDA loader for you if one doesn't exist for the
@@ -355,18 +454,21 @@ publish it!  Somewhat kidding about this, but it has happened multiple times. I
 know multiple people who've released challenges specifically for that, and even
 as recently as a few months ago, a Nintendo 3DSX loader for IDA was created
 specifically because of a CTF challenge.
+</p>
+
+<p>
 <a href="https://github.com/0xEBFE/3DSX-IDA-PRO-Loader">https://github.com/0xEBFE/3DSX-IDA-PRO-Loader</a>
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-12" >
-
-<h2>Gaming Challenges in CTFs</h2>
+<section id="slide-sec-13">
+<h2 id="sec-13">CTF Gaming Challenges</h2>
 <p>
-(a most certainly not exhaustive list)
+(a most certainly non-exhaustive list)
 </p>
 <aside class="notes">
 <p>
@@ -378,44 +480,12 @@ specifically because of a CTF challenge.
 <li>Complexity on the rise
 </li>
 </ul>
+
 </aside>
 
 </section>
-<section id="sec-12-1" >
-
-<h3>Hackquest</h3>
-<pre  class="example">
-$ nc hackquest.ghostintheshellcode.com 7331
-The 1337 Adventures of an Unknown Hacker
- 
-What is your name? HACKER
-Welcome, HACKER, to your adventure.
- 
-You are in your bedroom.  The room is spinning and you are very tired.
-&gt; look
-There is a can of Red Bull here.
-&gt; get can
-You are in your bedroom.  The room is spinning and you are very tired.
-You have a can of Red Bull.
-&gt; use can
-You feel refreshed.
- 
-You are in your bedroom.  There is a computer on your desk.  To the south is
-the door leading to the rest of the apartment.
-</pre>
-
-<aside class="notes">
-<p>
-January 27, 2012
-Evolved over time. Started as "hackquest", a very simple game like adventure,
-all the way to a full MMORPG three years later
-</p>
-</aside>
-
-</section>
-<section id="sec-12-2" >
-
-<h3>Choose Your Pwn Adventure (1)</h3>
+<section id="slide-sec-13-1">
+<h3 id="sec-13-1"></h3>
 <pre  class="example">
           ________
          / ____/ /_  ____  ____  ________     __  ______  __  _______
@@ -449,273 +519,284 @@ Feb 15, 2013
 Started the name of the series, "Chose your Pwn Adventure" because you could
 solve it multiple ways.
 </p>
+
 </aside>
 
 </section>
-<section id="sec-12-3" >
+<section id="slide-sec-13-2">
+<h3 id="sec-13-2">Blocky</h3>
 
-<h3>Blocky</h3>
-<img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
+<div class="figure">
+<p><img src="./images/blocky-02-overview.png" alt="blocky-02-overview.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
 January 27, 2012
 <a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
 </p>
+
 </aside>
 
 </section>
-<section id="sec-12-4" >
+<section id="slide-sec-13-3">
+<h3 id="sec-13-3">Blocky</h3>
 
-<h3>Escape from Minecraft</h3>
-<ul class="org-ul">
-<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a>
-</li>
+<div class="figure">
+<p><img src="./images/blocky-03-westdetail.png" alt="blocky-03-westdetail.png" />
+</p>
+</div>
+<aside class="notes">
+<p>
+January 27, 2012
+<a href="http://andrewl.dreamhosters.com/blog/2012-02-07/">http://andrewl.dreamhosters.com/blog/2012-02-07/</a>
+</p>
+
+</aside>
+
+</section>
+<section id="slide-sec-13-4">
+<h3 id="sec-13-4">Escape from Minecraft</h3>
+<ul>
+<li><a href="http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html">Dragon Sector Writeup</a></li>
+
 </ul>
-<img src="./images/logic_overview.png" alt="logic_overview.png" />
+
+<div class="figure">
+<p><img src="./images/logic_overview.png" alt="logic_overview.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
 PHDays
 Jan 25, 2014 - Jan 27, 2014
 Four stage, 4-bit shift register
 </p>
+
 </aside>
 
 </section>
-<section id="sec-12-5" >
+<section id="slide-sec-13-5">
+<h3 id="sec-13-5">Plaid CTF v1</h3>
 
-<h3>Plaid CTF v1</h3>
-<img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+<div class="figure">
+<p><img src="https://sysexit.files.wordpress.com/2012/04/worldmap.png" alt="worldmap.png" />
+</p>
+</div>
 <aside class="notes">
 <p>
 Apr 27, 2012 - Apr 28, 2012
 </p>
+
 </aside>
 
 </section>
-<section id="sec-12-6" >
+<section id="slide-sec-13-6">
+<h3 id="sec-13-6">Plaid CTF v2</h3>
 
-<h3>Plaid CTF v2</h3>
-<img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
+<div class="figure">
+<p><img src="./images/pctf2013.jpg" alt="pctf2013.jpg" />
+</p>
+</div>
 <aside class="notes">
 <p>
 April 19, 2013 - April 20, 2013
 </p>
+
 </aside>
 
 </section>
-<section id="sec-12-7" >
-
-<h3>Choose Your Pwn Adventure (2)</h3>
+<section id="slide-sec-13-7">
+<h3 id="sec-13-7">Pwn Adventure (2)</h3>
 <video width="960" height="540" controls><source src="media/gits2014teaser-small.mp4" autoplay="autoplay" type="video/mp4"></video>
 <aside class="notes">
 <p>
 Jan 17, 2014 — Jan 19, 2014
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-13" >
-
-<h2>Pwn Adventure 3 Demo</h2>
+<section id="slide-sec-14">
+<h2 id="sec-14">Pwn Adventure 3 Demo</h2>
 <aside class="notes">
-<p>
-25-27:00 minute mark
-</p>
+nil
 </aside>
 </section>
-<section id="sec-13-1" >
+<section id="slide-sec-14-1">
+<h3 id="sec-14-1">Challenges</h3>
+<ul>
+<li>Unbearable Revenge</li>
+<li>Fire and Ice</li>
+<li>Overachiever</li>
+<li>Until the Cows Come Home</li>
+<li>Pirate's Treasure</li>
+<li>Blocky's Revenge</li>
+<li>Egg Hunt</li>
 
-<h3>Challenges</h3>
-<ul class="org-ul">
-<li>Unbearable Revenge
-</li>
-<li>Fire and Ice
-</li>
-<li>Overachiever
-</li>
-<li>Until the Cows Come Home
-</li>
-<li>Pirate's Treasure
-</li>
-<li>Blocky's Revenge
-</li>
-<li>Egg Hunt
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-14" >
-
-<h2>3rd Party Hacks</h2>
+<section id="slide-sec-15">
+<h2 id="sec-15">3rd Party Hacks</h2>
 <aside class="notes">
-<p>
-45:00-50:00 minute mark
-</p>
+nil
 </aside>
 </section>
-<section id="sec-14-1" >
-
-<h3>LD＿PRELOAD</h3>
+<section id="slide-sec-15-1">
+<h3 id="sec-15-1">LD＿PRELOAD</h3>
 
 </section>
-<section id="sec-14-2" >
+<section id="slide-sec-15-2">
+<h3 id="sec-15-2">Wireshark Dissector</h3>
+<ul>
+<li><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua</a></li>
 
-<h3>Wireshark Dissector</h3>
-<ul class="org-ul">
-<li><a href="https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua">https://github.com/maetrics/wireshark-scripts/blob/master/gits.lua</a>
-</li>
 </ul>
 <div class="org-src-container">
 
 <pre  class="src src-js">-- gits.lua
--- A wireshark plug-<span style="color: #F0DFAF; font-weight: bold;">in</span> to reverse engineer PwnAdventure 3 traffic
+-- A wireshark plug-in to reverse engineer PwnAdventure 3 traffic
 --
--- http:<span style="color: #5F7F5F;">//</span><span style="color: #7F9F7F; font-style: italic;">pwnadventure.com/ for more information.</span>
+-- http://pwnadventure.com/ for more information.
 --
 -- eric.gragsone@erisresearch.org
 
-gits_proto=Proto<span style="color: #DCDCCC;">(</span><span style="color: #CC9393;">"GitS"</span>, <span style="color: #CC9393;">"Pwn Adventure 3"</span><span style="color: #DCDCCC;">)</span>
+gits_proto=Proto("GitS", "Pwn Adventure 3")
 
-<span style="color: #F0DFAF; font-weight: bold;">function</span> <span style="color: #93E0E3;">addLocation</span><span style="color: #DCDCCC;">(</span><span style="color: #DFAF8F;">tvb</span>, <span style="color: #DFAF8F;">pos</span>, <span style="color: #DFAF8F;">tree</span><span style="color: #DCDCCC;">)</span>
+function addLocation(tvb, pos, tree)
   local branch
 
-  branch=tree:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,12<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Location"</span><span style="color: #DCDCCC;">)</span>
-  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"X Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
-  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+4,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Y Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+4,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
-  branch:add<span style="color: #DCDCCC;">(</span>tvb<span style="color: #BFEBBF;">(</span>pos+8,4<span style="color: #BFEBBF;">)</span>, <span style="color: #CC9393;">"Z Coordinates: "</span>..tvb<span style="color: #BFEBBF;">(</span>pos+8,4<span style="color: #BFEBBF;">)</span>:le_uint<span style="color: #BFEBBF;">()</span><span style="color: #DCDCCC;">)</span>
+  branch=tree:add(tvb(pos,12), "Location")
+  branch:add(tvb(pos,4), "X Coordinates: "..tvb(pos,4):le_uint())
+  branch:add(tvb(pos+4,4), "Y Coordinates: "..tvb(pos+4,4):le_uint())
+  branch:add(tvb(pos+8,4), "Z Coordinates: "..tvb(pos+8,4):le_uint())
 end
 </pre>
 </div>
 
 </section>
-<section id="sec-14-3" >
+<section id="slide-sec-15-3">
+<h3 id="sec-15-3">PwnAdventure3Hacks Github</h3>
+<ul>
+<li>DirectX Overlay</li>
+<li><a href="https://github.com/zku/PwnAdventure3Hacks">https://github.com/zku/PwnAdventure3Hacks</a></li>
 
-<h3>PwnAdventure3Hacks Github</h3>
-<ul class="org-ul">
-<li>DirectX Overlay
-</li>
-<li><a href="https://github.com/zku/PwnAdventure3Hacks">https://github.com/zku/PwnAdventure3Hacks</a>
-</li>
 </ul>
-<img src="./images/overlay.png" alt="overlay.png" />
+
+<div class="figure">
+<p><img src="./images/overlay.png" alt="overlay.png" />
+</p>
+</div>
 
 </section>
-<section id="sec-14-4" >
+<section id="slide-sec-15-4">
+<h3 id="sec-15-4">Samurai PwnHax.cpp</h3>
+<ul>
+<li><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f</a></li>
 
-<h3>Samurai PwnHax.cpp</h3>
-<ul class="org-ul">
-<li><a href="https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f">https://gist.github.com/dropkickgit/2b65c0ac18506e5c5f0f</a>
-</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-C"><span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;Windows.h&gt;</span>
-<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;detours.h&gt;</span>
-<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;fstream&gt;</span>
-<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdio&gt;</span>
-<span style="color: #94BFF3;">#include</span> <span style="color: #CC9393;">&lt;cstdlib&gt;</span>
+<pre  class="src src-C">#include &lt;Windows.h&gt;
+#include &lt;detours.h&gt;
+#include &lt;fstream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
 
-<span style="color: #94BFF3;">#pragma</span> comment<span style="color: #DCDCCC;">(</span>lib, <span style="color: #CC9393;">"detours.lib"</span><span style="color: #DCDCCC;">)</span>
+#pragma comment(lib, "detours.lib")
 
-<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Classes</span>
-<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">TCPSocket</span> <span style="color: #DCDCCC;">{}</span>;
-<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Player</span> <span style="color: #DCDCCC;">{}</span>;
-<span style="color: #7CB8BB;">class</span> <span style="color: #DFAF8F;">Actor</span> <span style="color: #DCDCCC;">{}</span>;
+// Classes
+class TCPSocket {};
+class Player {};
+class Actor {};
 
-<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Structs</span>
-<span style="color: #F0DFAF; font-weight: bold;">struct</span> <span style="color: #7CB8BB;">Vector3</span> <span style="color: #DCDCCC;">{</span>
-    <span style="color: #7CB8BB;">float</span> <span style="color: #DFAF8F;">x</span>, <span style="color: #DFAF8F;">y</span>, <span style="color: #DFAF8F;">z</span>;
-<span style="color: #DCDCCC;">}</span>;
+// Structs
+struct Vector3 {
+    float x, y, z;
+};
 
-<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Typedefs</span>
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">SendFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">RecvFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">TCPSocket</span> *, <span style="color: #7CB8BB;">void</span>*, <span style="color: #7CB8BB;">unsigned</span> <span style="color: #7CB8BB;">int</span><span style="color: #DCDCCC;">)</span>;
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">CanJumpFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *<span style="color: #DCDCCC;">)</span>;
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">bool</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerChatFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">PlayerFastTravelFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Player</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *, <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DCDCCC;">)</span>;
-<span style="color: #F0DFAF; font-weight: bold;">typedef</span> <span style="color: #7CB8BB;">void</span><span style="color: #DCDCCC;">(</span><span style="color: #7CB8BB;">__thiscall</span> *<span style="color: #DFAF8F;">ActorSetPositionFunc</span><span style="color: #DCDCCC;">)(</span><span style="color: #7CB8BB;">Actor</span> *, <span style="color: #7CB8BB;">Vector3</span> *<span style="color: #DCDCCC;">)</span>;
+// Typedefs
+typedef bool(__thiscall *SendFunc)(TCPSocket *, const void*, unsigned int);
+typedef bool(__thiscall *RecvFunc)(TCPSocket *, void*, unsigned int);
+typedef bool(__thiscall *CanJumpFunc)(Player *);
+typedef bool(__thiscall *PlayerChatFunc)(Player *, const char *);
+typedef void(__thiscall *PlayerFastTravelFunc)(Player *, const char *, const char *);
+typedef void(__thiscall *ActorSetPositionFunc)(Actor *, Vector3 *);
 
-<span style="color: #5F7F5F;">// </span><span style="color: #7F9F7F; font-style: italic;">Globals</span>
-<span style="color: #7CB8BB;">SendFunc</span> <span style="color: #DFAF8F;">RealSend</span>;
-<span style="color: #7CB8BB;">RecvFunc</span> <span style="color: #DFAF8F;">RealRecv</span>;
-<span style="color: #7CB8BB;">CanJumpFunc</span> <span style="color: #DFAF8F;">RealCanJump</span>;
-<span style="color: #7CB8BB;">PlayerChatFunc</span> <span style="color: #DFAF8F;">RealChat</span>;
-<span style="color: #7CB8BB;">PlayerFastTravelFunc</span> <span style="color: #DFAF8F;">PlayerFastTravel</span>;
-<span style="color: #7CB8BB;">ActorSetPositionFunc</span> <span style="color: #DFAF8F;">ActorSetPosition</span>;
-<span style="color: #7CB8BB;">Player</span> *<span style="color: #DFAF8F;">playerObj</span> = 0;
-<span style="color: #7CB8BB;">TCPSocket</span> *<span style="color: #DFAF8F;">clientSock</span> = 0;
+// Globals
+SendFunc RealSend;
+RecvFunc RealRecv;
+CanJumpFunc RealCanJump;
+PlayerChatFunc RealChat;
+PlayerFastTravelFunc PlayerFastTravel;
+ActorSetPositionFunc ActorSetPosition;
+Player *playerObj = 0;
+TCPSocket *clientSock = 0;
 std::ofstream DbgLogger;
 </pre>
 </div>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-15" >
+<section id="slide-sec-16">
+<h2 id="sec-16">Unintended Bugs</h2>
+<ul>
+<li class="fragment -">Instant item steals</li>
+<li class="fragment -">Bear Assassins (Golden Guns)</li>
+<li class="fragment -">Cow Level visible (ragdoll fun)</li>
+<li class="fragment -">An Eggcellent Solution (delete other models)</li>
+<li class="fragment -">Cheat Engine</li>
+<li class="fragment -">Easy bear hack</li>
 
-<h2>Unintended Bugs</h2>
-<ul class="org-ul">
-<li class="fragment">Instant item steals
-</li>
-<li class="fragment">Bear Assassins (Golden Guns)
-</li>
-<li class="fragment">Cow Level visible (ragdoll fun)
-</li>
-<li class="fragment">An Eggcellent Solution (delete other models)
-</li>
-<li class="fragment">Cheat Engine 
-</li>
 </ul>
-</section>
+<aside class="notes">
+<p>
+Explain the 
+</p>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-16" >
+<section id="slide-sec-17">
+<h2 id="sec-17">Useful CTF Tools</h2>
+<ul>
+<li>xortool <a href="https://github.com/hellman/xortool">github.com/hellman/xortool</a></li>
+<li>pwntools <a href="https://github.com/Gallopsled/pwntools">github.com/Gallopsled/pwntools</a></li>
+<li>qira <a href="https://github.com/BinaryAnalysisPlatform/qira">github.com/BinaryAnalysisPlatform/qira</a> / <a href="http://qira.me">qira.me</a></li>
 
-<h2>Useful CTF Tools</h2>
-<ul class="org-ul">
-<li>xortool <a href="https://github.com/hellman/xortool">https://github.com/hellman/xortool</a>
-</li>
-<li>pwntols <a href="https://github.com/Gallopsled/pwntools">https://github.com/Gallopsled/pwntools</a>
-</li>
-<li>qira <a href="https://github.com/BinaryAnalysisPlatform/qira">https://github.com/BinaryAnalysisPlatform/qira</a> / <a href="http://qira.me">http://qira.me</a>
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-17" >
+<section id="slide-sec-18">
+<h2 id="sec-18">More CTF Resources</h2>
+<ul>
+<li><a href="https://ctftime.org/">ctftime.org</a> - Events, team scores, writeups</li>
+<li><a href="http://captf.com/">captf.com</a> - dump site, mirrors, calendar</li>
+<li><a href="http://golden-flags.com/">golden-flags.com</a> - yearly CTF awards</li>
+<li><a href="https://github.com/ctfs/">github.com/ctfs</a> - best maintained collection of writeups</li>
 
-<h2>More CTF Resources</h2>
-<ul class="org-ul">
-<li><a href="https://ctftime.org/">https://ctftime.org/</a> - Events, team scores, writeups
-</li>
-<li><a href="http://captf.com/">http://captf.com/</a> - dump site, mirrors, calendar
-</li>
-<li><a href="http://golden-flags.com/">http://golden-flags.com/</a> - yearly CTF awards
-</li>
-<li><a href="http://github.com/ctfs/">http://github.com/ctfs/</a> - best maintained collection of writeups
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-18" >
+<section id="slide-sec-19">
+<h2 id="sec-19">Meta</h2>
+<ul>
+<li>Slides available at <a href="https://github.com/vector35/HackingGames">github.com/vector35/HackingGames</a></li>
+<li>Binary Ninja available at <a href="https://binary.ninja/">binary.ninja</a></li>
+<li>Credits / Thanks:</li>
 
-<h2>Questions?</h2>
-<ul class="org-ul">
-<li>Slides available at <a href="http://github.com/vector35/HackingGames">http://github.com/vector35/HackingGames</a>
-</li>
-<li>Binary Ninja available at <a href="http://binary.ninja/">http://binary.ninja/</a>
-</li>
-<li>Credits / Thanks:
-</li>
 </ul>
 <div class="org-src-container">
 
@@ -728,39 +809,51 @@ Any Bonds Today: Public Domain: http://en.wikipedia.org/wiki/Any_Bonds_Today
 It's Got Me Again: Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 Dragon Sector Escape from Minecraft Writeup used with Permission:
     http://blog.dragonsector.pl/2014/02/ph4quals-escape-from-minecraft.html
+Confused: https://flickr.com/photos/83633410@N07/7658225516 (CC BY-SA)
 </pre>
 </div>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-19"  data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
-
-<h2>RANDOM 1</h2>
+<section id="slide-sec-20" data-background="./images/rando1.gif" data-background-size="720px" data-background-transition="none">
+<h2 id="sec-20">RANDOM 1</h2>
 <aside class="notes">
 <p>
 Public Domain: <a href="http://en.wikipedia.org/wiki/Any_Bonds_Today">http://en.wikipedia.org/wiki/Any_Bonds_Today</a>
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-20"  data-background="./images/rando2.gif" data-background-transition="none">
-
-<h2>RANDOM 2</h2>
+<section id="slide-sec-21" data-background="./images/rando2.gif" data-background-transition="none">
+<h2 id="sec-21">RANDOM 2</h2>
 <aside class="notes">
 <p>
 Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://en.wikipedia.org/wiki/It's_Got_Me_Again</a>!
 </p>
-</aside>
-</section>
 
+</aside>
+
+</section>
 </section>
 <section>
-<section id="sec-21"  data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
+<section id="slide-sec-22" data-background="./images/rando3.gif" data-background-transition="none">
+<h2 id="sec-22">RANDOM 3</h2>
+<aside class="notes">
+<p>
+Public Domain: <a href="http://en.wikipedia.org/wiki/It's_Got_Me_Again">http://en.wikipedia.org/wiki/It's_Got_Me_Again</a>!
+</p>
 
-<h2>We put on our robe and wizard hat</h2>
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-sec-23" data-background="./images/MMIBH-team-photo.jpg" data-background-transition="none">
+<h2 id="sec-23">We put on our robe and wizard hat</h2>
 </section>
 </section>
 </div>
@@ -776,14 +869,14 @@ Reveal.initialize({
 
 controls: true,
 progress: true,
-history: false,
+history: true,
 center: true,
 slideNumber: true,
 rollingLinks: false,
 keyboard: true,
 overview: true,
-width: 1280,
-height: 720,
+width: 1024,
+height: 768,
 margin: 0.10,
 minScale: 0.10,
 maxScale: 3.50,
