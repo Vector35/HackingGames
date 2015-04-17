@@ -210,6 +210,9 @@ array? Why yes, yes it is equal to any random string.
     }
 ?>
 #+END_SRC
+#+ATTR_REVEAL: :frag (-)
+~$ curl http://target.ip/?pass[]~
+
 #+BEGIN_NOTES
 This bug is particularly interesting since multiple CTFs have been bitten by it
 unintentionally in their own score infrastructure. You'd think people would have

@@ -13,4 +13,4 @@
 See the [[LICENSE]] for more information.
 
 * Contact
-See [[http://vector35.com/][Vector35.com]] for a contact form or email us at our first names at our domain name, or find us on twitter (@psifertex, and @eipwned).
+See [[http://vector35.com/][Vector35.com]] for a contact form or email us at our first names at our domain name, or find us on twitter ([[https://twitter.com/psifertex][@psifertex]], and [[https://twitter.com/eipwned][@eipwned]]).
