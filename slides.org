@@ -200,7 +200,7 @@ When are two unequal things equal? If you ask PHP, pretty darn often. An empty
 array? Why yes, yes it is equal to any random string.
 #+END_NOTES
 
-*** type coercion 
+*** example
 #+BEGIN_SRC php
 <?php
     $key = "key{XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX}";

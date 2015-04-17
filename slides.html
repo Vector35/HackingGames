@@ -370,7 +370,7 @@ array? Why yes, yes it is equal to any random string.
 
 </section>
 <section id="slide-sec-11-1-2">
-<h4 id="sec-11-1-2">type coercion</h4>
+<h4 id="sec-11-1-2">example</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php"><span style="color: #94BFF3;">&lt;?php</span>
@@ -574,39 +574,6 @@ attempt = read<span style="color: #DCDCCC;">(</span>open<span style="color: #BFE
 Who knows about MAXSYMLINKS? (BSD), or SYMLOOP＿PMAX (POSIX)?
 Who knows what the values are commonly defined as? (8, 40)
 </p>
-
-</aside>
-
-</section>
-<section id="slide-sec-11-6-2">
-<h4 id="sec-11-6-2">real-world example</h4>
-
-<div class="figure">
-<p><img src="./images/realpathstrcmp.png" alt="realpathstrcmp.png" />
-</p>
-</div>
-<aside class="notes">
-<div class="org-src-container">
-
-<pre class="src src-C"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
-                 <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">restricted_filename</span><span style="color: #DCDCCC;">)</span>
-<span style="color: #DCDCCC;">{</span>
-    <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">restricted</span> = <span style="color: #BFEBBF;">false</span>;
-
-    <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #BFEBBF;">(</span>symbol_conf.kptr_restrict<span style="color: #BFEBBF;">)</span> <span style="color: #BFEBBF;">{</span>
-        <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">r</span> = realpath<span style="color: #D0BF8F;">(</span>filename, <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span>;
-
-        <span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #D0BF8F;">(</span>r != <span style="color: #BFEBBF;">NULL</span><span style="color: #D0BF8F;">)</span> <span style="color: #D0BF8F;">{</span>
-            restricted = strcmp<span style="color: #93E0E3;">(</span>r, restricted_filename<span style="color: #93E0E3;">)</span> == <span style="color: #BFEBBF;">0</span>;
-            free<span style="color: #93E0E3;">(</span>r<span style="color: #93E0E3;">)</span>;
-            <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
-        <span style="color: #D0BF8F;">}</span>
-    <span style="color: #BFEBBF;">}</span>
-
-    <span style="color: #F0DFAF; font-weight: bold;">return</span> restricted;
-<span style="color: #DCDCCC;">}</span>
-</pre>
-</div>
 
 </aside>
 
