@@ -49,20 +49,11 @@ going to like this talk.
 :reveal_background_trans: none
 :END:      
 
-* Join Us!                                                           
-First 15 people using the code ~April172015~ on SSID ~InfiltrateSpeaker~ get working
-internet in the room for the day.
-(MITM DMG injection free of charge courtesy of @patrickwardle)
-- [[http://pwnadventure.com/]]
-- Download client (GPU recommended)
-- Online demo at the end of the talk
-#+BEGIN_NOTES
-Information about the client being available, the format, gaming.
-#+END_NOTES
-
 * Motivation                                                         
 #+BEGIN_NOTES
 (3min)
+Note that most of these next few slides were skipped in the live presentation.
+
 First, a brief note on the motivation for the talk. We're really talking about
 the growth of both CTFs and gaming together, and how they're related. So first,
 gaming.
@@ -149,9 +140,12 @@ http://www.reddit.com/r/programming/comments/2rhvsa/tasbot_executes_arbitrary_co
 :END:      
 #+REVEAL_HTML: <canvas id="chart1" width="800" height="600"></canvas>
 #+BEGIN_NOTES
-Likewise, there's an interesting parallel trend in the CTF world as well. Not
-only are CTFs taking off in popularity, but (as Chris Eagle discussed here two
-years ago), there's increasingly real-world spill-over between them.
+Who here has played on a team ranked on ctftime?
+
+There's also an interesting parallel trend in the CTF world that parallels the
+growth of the game industry. Not only are CTFs taking off in popularity, but (as
+Chris Eagle discussed here two years ago), there's increasingly real-world
+spill-over between them.
 #+END_NOTES
 
 * Brief History of CTFs                                              
@@ -365,6 +359,9 @@ timestamp field too.
 [[./images/freelabor.jpg]]
 #+BEGIN_NOTES
 Crowd-sourced bugs.
+
+Tested SCC as a GitS challenge, measured how long reversing would take for
+protection of DEF CON CTF payloads.
 
 Want someone to build a free IDA loader for you if one doesn't exist for the
 platform you're working on? Just release a CTF challenge on it, and someone will
