@@ -56,10 +56,10 @@ Hi, I'm Jordan &#x2013; and I'm Rusty
 <section id="slide-sec-3">
 <h2 id="sec-3">Is this talk for you?</h2>
 <ul>
-<li class="fragment -">Did you play Pwn Adventure 3 during Ghost in the Shellcode this year?</li>
-<li class="fragment -">Have you ever played a CTF before?</li>
-<li class="fragment -">Have you heard of CTFs before?</li>
-<li class="fragment -">Have you played or hacked a video game?</li>
+<li>Did you play Pwn Adventure 3 during Ghost in the Shellcode this year?</li>
+<li>Have you ever played a CTF before?</li>
+<li>Have you heard of CTFs before?</li>
+<li>Have you played or hacked a video game?</li>
 
 </ul>
 <aside class="notes">
@@ -82,6 +82,11 @@ going to like this talk.
 <section>
 <section id="slide-sec-5">
 <h2 id="sec-5">Join Us!</h2>
+<p>
+First 15 people using the code <code>April172015</code> on SSID <code>InfiltrateSpeaker</code> get working
+internet in the room for the day.
+(MITM DMG injection free of charge courtesy of @patrickwardle)
+</p>
 <ul>
 <li><a href="http://pwnadventure.com/">http://pwnadventure.com/</a></li>
 <li>Download client (GPU recommended)</li>
@@ -102,6 +107,7 @@ Information about the client being available, the format, gaming.
 <h2 id="sec-6">Motivation</h2>
 <aside class="notes">
 <p>
+(3min)
 First, a brief note on the motivation for the talk. We're really talking about
 the growth of both CTFs and gaming together, and how they're related. So first,
 gaming.
@@ -188,6 +194,77 @@ with a bug for a priv-esc.
 </aside>
 
 </section>
+<section id="slide-sec-8-3">
+<h3 id="sec-8-3">TAS Total Control</h3>
+
+<div class="figure">
+<p><img src="./images/tasvideos.png" alt="tasvideos.png" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+The Tool-Assisted Speed run scene in gaming has done some pretty amazing
+stuff. They started with frame-perfect replays of particular games in emulators,
+and have graduated to what they now call "total control" which is not only
+arbitrary code execution but implementing some ridiculous payloads on top of it.
+</p>
+
+<p>
+They started many years ago with "select glitches", abusing state bugs to cause
+single byte increments or overwrites to change warp destinations or item types,
+for example. These were often found without actually understanding the causes or
+implications, but lately they've moved far beyond
+</p>
+
+<p>
+The Tool-Assisted Speed Run scene has really taken off in recent years. They've
+even invented a new term for code execution, "total control", and pulled off
+some super neat tricks.
+</p>
+
+</aside>
+</section>
+<section id="slide-sec-8-3-1">
+<h4 id="sec-8-3-1">TASBot</h4>
+
+<div class="figure">
+<p><img src="./images/tasbot.jpg" alt="tasbot.jpg" />
+</p>
+</div>
+<aside class="notes">
+<p>
+<a href="https://twitter.com/mrtasbot">https://twitter.com/mrtasbot</a>
+</p>
+
+<p>
+Hardware platform for physical interaction with games. No longer doing total
+control exploits via emulators and software inputs but actually wiring directly
+into consoles via gamepad interfaces. (Though sometimes cheating with wiring up
+reset buttons as well)
+</p>
+
+</aside>
+
+</section>
+<section id="slide-sec-8-3-2">
+<h4 id="sec-8-3-2">AGDQ 2015</h4>
+
+<div class="figure">
+<p><img src="./images/tasbot-twitch.png" alt="tasbot-twitch.png" />
+</p>
+</div>
+<aside class="notes">
+<p>
+<a href="https://twitter.com/mrtasbot">https://twitter.com/mrtasbot</a>
+<a href="http://tasvideos.org/forum/viewtopic.php?t=15787">http://tasvideos.org/forum/viewtopic.php?t=15787</a>
+<a href="http://www.reddit.com/r/programming/comments/2rhvsa/tasbot_executes_arbitrary_code_on_the_snes_with/cngj16x">http://www.reddit.com/r/programming/comments/2rhvsa/tasbot_executes_arbitrary_code_on_the_snes_with/cngj16x</a>
+</p>
+
+</aside>
+
+
+</section>
 </section>
 <section>
 <section id="slide-sec-9" data-state="chart1">
@@ -251,9 +328,11 @@ modern-attack defense style event.
 <section>
 <section id="slide-sec-11" data-background="./images/bugs.jpg" data-background-transition="none">
 <h2 id="sec-11">Real World Bugs</h2>
-
 <aside class="notes">
-nil
+<p>
+(5min)
+</p>
+
 </aside>
 
 </section>
@@ -379,10 +458,12 @@ Bunyan's Revenge (PlaidCTF 2013)
 </ul>
 
 </aside>
+
 </section>
 <section id="slide-sec-11-3">
 <h3 id="sec-11-3">Pirate Danbi</h3>
 <ul>
+<li>TLV protocol</li>
 <li>bzip2</li>
 <li><a href="https://git.io/vvETK">https://git.io/vvETK</a> (ctf writeup repository)</li>
 
@@ -395,12 +476,17 @@ Bunyan's Revenge (PlaidCTF 2013)
 
 <aside class="notes">
 <p>
+Upload some data, decompress it as BZip
+</p>
+
+<p>
 Interesting to note that in real CTFs, people usually don't look to the real
 libraries initially since it would typically make the events take up too much
 time &#x2013; or at least, if we always were investigating things it would.
 </p>
 
 </aside>
+
 </section>
 <section id="slide-sec-11-4">
 <h3 id="sec-11-4">lollerskaters privesc</h3>
@@ -450,17 +536,59 @@ UNIX-domain socket addresses into the correct size of structure.
 </p>
 
 </aside>
+
 </section>
 <section id="slide-sec-11-6">
 <h3 id="sec-11-6">guesspw</h3>
 <ul>
-<li class="fragment appear">challenge from codegate CTF</li>
-<li class="fragment -">MAXSYMLINKS</li>
+<li>challenge from codegate CTF</li>
 
 </ul>
 <div class="org-src-container">
 
-<pre  class="fragment (appear)"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
+<pre  class="src src-C">inputfile = realpath<span style="color: #DCDCCC;">(</span>argv<span style="color: #BFEBBF;">[</span><span style="color: #BFEBBF;">1</span><span style="color: #BFEBBF;">]</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>strstr<span style="color: #BFEBBF;">(</span>inputfile,<span style="color: #CC9393;">"password"</span><span style="color: #BFEBBF;">)</span> || strstr<span style="color: #BFEBBF;">(</span>inputfile,<span style="color: #CC9393;">"flag"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>
+<span style="color: #DCDCCC;">{</span>
+  <span style="color: #F0DFAF; font-weight: bold;">goto</span> <span style="color: #BFEBBF;">fail</span>;
+<span style="color: #DCDCCC;">}</span>
+password = read<span style="color: #DCDCCC;">(</span>open<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"/home/guesspw/password"</span><span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>;
+attempt = read<span style="color: #DCDCCC;">(</span>open<span style="color: #BFEBBF;">(</span>inputfile<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span>;
+<span style="color: #F0DFAF; font-weight: bold;">if</span> <span style="color: #DCDCCC;">(</span>strcmp<span style="color: #BFEBBF;">(</span>password,attempt<span style="color: #BFEBBF;">)</span><span style="color: #DCDCCC;">)</span> 
+<span style="color: #DCDCCC;">{</span>
+  system<span style="color: #BFEBBF;">(</span><span style="color: #CC9393;">"/bin/sh"</span><span style="color: #BFEBBF;">)</span>;
+<span style="color: #DCDCCC;">}</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-sec-11-6-1">
+<h4 id="sec-11-6-1">guesspw solutions</h4>
+<ul>
+<li class="fragment -">/dev/fd/3</li>
+<li class="fragment -">race condition (TOCTTOU)</li>
+<li class="fragment -">MAXSYMLINKS (SYMLOOP＿PMAX)</li>
+
+</ul>
+<aside class="notes">
+<p>
+Who knows about MAXSYMLINKS? (BSD), or SYMLOOP＿PMAX (POSIX)?
+Who knows what the values are commonly defined as? (8, 40)
+</p>
+
+</aside>
+
+</section>
+<section id="slide-sec-11-6-2">
+<h4 id="sec-11-6-2">real-world example</h4>
+
+<div class="figure">
+<p><img src="./images/realpathstrcmp.png" alt="realpathstrcmp.png" />
+</p>
+</div>
+<aside class="notes">
+<div class="org-src-container">
+
+<pre class="src src-C"><span style="color: #7CB8BB;">bool</span> <span style="color: #93E0E3;">symbol__restricted_filename</span><span style="color: #DCDCCC;">(</span><span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">filename</span>,
                  <span style="color: #F0DFAF; font-weight: bold;">const</span> <span style="color: #7CB8BB;">char</span> *<span style="color: #DFAF8F;">restricted_filename</span><span style="color: #DCDCCC;">)</span>
 <span style="color: #DCDCCC;">{</span>
     <span style="color: #7CB8BB;">bool</span> <span style="color: #DFAF8F;">restricted</span> = <span style="color: #BFEBBF;">false</span>;
@@ -479,6 +607,31 @@ UNIX-domain socket addresses into the correct size of structure.
 <span style="color: #DCDCCC;">}</span>
 </pre>
 </div>
+
+</aside>
+
+</section>
+<section id="slide-sec-11-7">
+<h3 id="sec-11-7">bound payloads / chflags</h3>
+<aside class="notes">
+<p>
+A number of the same techniques Patrick mentioned yesterday in his BADA$$ OS X
+Malware talk have been fielded over the past few years in CTFs.  Our team
+encrypted payloads using unique properties of the target host, for example four
+years ago. It makes 'overnight analysis' difficult or impossible.
+</p>
+
+<p>
+Additionally, the example he cited of chflags settings as well has been used
+back when DEF CON was BSD based.
+</p>
+
+<p>
+Ask me afterward about de-anonymizing hosts on a reverse-NAT through the TCP
+timestamp field too.
+</p>
+
+</aside>
 
 </section>
 </section>
@@ -520,7 +673,7 @@ specifically because of a CTF challenge.
 </p>
 <aside class="notes">
 <p>
-15:00 mark
+(20min)
 </p>
 <ul class="org-ul">
 <li>PPP/GitS one upping / inspiration (explain PPP/GitS!)
@@ -671,7 +824,10 @@ Jan 17, 2014 — Jan 19, 2014
 <section id="slide-sec-14">
 <h2 id="sec-14">Pwn Adventure 3 Demo</h2>
 <aside class="notes">
-nil
+<p>
+(30min)
+</p>
+
 </aside>
 </section>
 <section id="slide-sec-14-1">
@@ -693,7 +849,10 @@ nil
 <section id="slide-sec-15">
 <h2 id="sec-15">3rd Party Hacks</h2>
 <aside class="notes">
-nil
+<p>
+(45min)
+</p>
+
 </aside>
 </section>
 <section id="slide-sec-15-1">

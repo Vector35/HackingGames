@@ -222,7 +222,9 @@ blockquote:before {
 
 .reveal code {
   font-family: monospace;
+  /*
   font-size: 0.5em;
+*/
 }
 
 .reveal pre code {
@@ -233,6 +235,7 @@ blockquote:before {
   word-wrap: normal;
   background: #3F3F3F;
   color: #DCDCDC; }
+  font-size: 0.5em;
 
 .reveal table {
   margin: auto;

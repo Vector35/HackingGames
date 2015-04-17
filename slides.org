@@ -33,7 +33,6 @@ Hi, I'm Jordan -- and I'm Rusty
 - Quit and founded Vector 35 to do "CTF stuff"
 
 * Is this talk for you?
-#+ATTR_REVEAL: :frag (- - - -)
 - Did you play Pwn Adventure 3 during Ghost in the Shellcode this year?
 - Have you ever played a CTF before?
 - Have you heard of CTFs before?
@@ -51,6 +50,9 @@ going to like this talk.
 :END:      
 
 * Join Us!                                                           
+First 15 people using the code ~April172015~ on SSID ~InfiltrateSpeaker~ get working
+internet in the room for the day.
+(MITM DMG injection free of charge courtesy of @patrickwardle)
 - [[http://pwnadventure.com/]]
 - Download client (GPU recommended)
 - Online demo at the end of the talk
@@ -60,6 +62,7 @@ Information about the client being available, the format, gaming.
 
 * Motivation                                                         
 #+BEGIN_NOTES
+(3min)
 First, a brief note on the motivation for the talk. We're really talking about
 the growth of both CTFs and gaming together, and how they're related. So first,
 gaming.
@@ -100,6 +103,46 @@ today. Instead of a save game file and video game, it's a signed kernel module
 with a bug for a priv-esc.
 #+END_NOTES
 
+** TAS Total Control
+[[./images/tasvideos.png]]
+
+#+BEGIN_NOTES
+The Tool-Assisted Speed run scene in gaming has done some pretty amazing
+stuff. They started with frame-perfect replays of particular games in emulators,
+and have graduated to what they now call "total control" which is not only
+arbitrary code execution but implementing some ridiculous payloads on top of it.
+
+They started many years ago with "select glitches", abusing state bugs to cause
+single byte increments or overwrites to change warp destinations or item types,
+for example. These were often found without actually understanding the causes or
+implications, but lately they've moved far beyond
+
+The Tool-Assisted Speed Run scene has really taken off in recent years. They've
+even invented a new term for code execution, "total control", and pulled off
+some super neat tricks.
+
+#+END_NOTES
+*** TASBot
+[[./images/tasbot.jpg]]
+#+BEGIN_NOTES
+https://twitter.com/mrtasbot
+
+Hardware platform for physical interaction with games. No longer doing total
+control exploits via emulators and software inputs but actually wiring directly
+into consoles via gamepad interfaces. (Though sometimes cheating with wiring up
+reset buttons as well)
+
+#+END_NOTES
+
+*** AGDQ 2015
+[[./images/tasbot-twitch.png]]
+#+BEGIN_NOTES
+https://twitter.com/mrtasbot
+http://tasvideos.org/forum/viewtopic.php?t=15787
+http://www.reddit.com/r/programming/comments/2rhvsa/tasbot_executes_arbitrary_code_on_the_snes_with/cngj16x
+#+END_NOTES
+
+
 * Growth of CTFs                                                     
 :PROPERTIES:
 :reveal_data_state: chart1
@@ -134,13 +177,13 @@ modern-attack defense style event.
 #+END_NOTES
 
 * Real World Bugs
+#+BEGIN_NOTES
+(5min)
+#+END_NOTES
 :PROPERTIES:
 :reveal_background: ./images/bugs.jpg
 :reveal_background_trans: none
 :END:      
-
-#+BEGIN_NOTES
-#+END_NOTES
 
 ** 
 [[./images/phplogo.png]]
@@ -221,18 +264,24 @@ Bunyan's Revenge (PlaidCTF 2013)
 #+BEGIN_NOTES
 - Real GO developers annoying about security, so...
 #+END_NOTES
+
 ** Pirate Danbi
+- TLV protocol
 - bzip2
 - [[https://git.io/vvETK]] (ctf writeup repository)
 #+ATTR_REVEAL: :frag (-)
 [[./images/beist.png]]
 
 #+BEGIN_NOTES
+Upload some data, decompress it as BZip
+
 Interesting to note that in real CTFs, people usually don't look to the real
 libraries initially since it would typically make the events take up too much
 time -- or at least, if we always were investigating things it would.
 #+END_NOTES
+
 ** lollerskaters privesc
+
 #+ATTR_REVEAL: :frag (appear)
 #+BEGIN_SRC
 =============================================================================
@@ -268,11 +317,36 @@ https://www.freebsd.org/security/advisories/FreeBSD-SA-11:05.unix.asc
 #+BEGIN_NOTES
 http://reddit.com/r/netsec/comments/xgzt1/defcon_20_ctf_network_raw_pcap_torrent/c5mvehs
 #+END_NOTES
+
 ** guesspw
-#+ATTR_REVEAL: :frag (appear -)
 - challenge from codegate CTF
-- MAXSYMLINKS
-#+ATTR_REVEAL: :frag (appear)
+#+BEGIN_SRC C
+inputfile = realpath(argv[1]);
+if (strstr(inputfile,"password") || strstr(inputfile,"flag"))
+{
+  goto fail;
+}
+password = read(open("/home/guesspw/password"));
+attempt = read(open(inputfile));
+if (strcmp(password,attempt)) 
+{
+  system("/bin/sh");
+}
+#+END_SRC
+
+*** guesspw solutions
+#+ATTR_REVEAL: :frag (- - -)
+- /dev/fd/3
+- race condition (TOCTTOU)
+- MAXSYMLINKS (SYMLOOP＿PMAX)
+#+BEGIN_NOTES
+Who knows about MAXSYMLINKS? (BSD), or SYMLOOP＿PMAX (POSIX)?
+Who knows what the values are commonly defined as? (8, 40)
+#+END_NOTES
+
+*** real-world example
+[[./images/realpathstrcmp.png]]
+#+BEGIN_NOTES
 #+BEGIN_SRC C
 bool symbol__restricted_filename(const char *filename,
 				 const char *restricted_filename)
@@ -292,6 +366,21 @@ bool symbol__restricted_filename(const char *filename,
 	return restricted;
 }
 #+END_SRC
+#+END_NOTES
+
+** bound payloads / chflags
+#+BEGIN_NOTES
+A number of the same techniques Patrick mentioned yesterday in his BADA$$ OS X
+Malware talk have been fielded over the past few years in CTFs.  Our team
+encrypted payloads using unique properties of the target host, for example four
+years ago. It makes 'overnight analysis' difficult or impossible.
+
+Additionally, the example he cited of chflags settings as well has been used
+back when DEF CON was BSD based.
+
+Ask me afterward about de-anonymizing hosts on a reverse-NAT through the TCP
+timestamp field too.
+#+END_NOTES
 
 * Free Tools!                                                        
 [[./images/freelabor.jpg]]
@@ -311,7 +400,7 @@ https://github.com/0xEBFE/3DSX-IDA-PRO-Loader
 * CTF Gaming Challenges 
 (a most certainly non-exhaustive list)
 #+BEGIN_NOTES
-15:00 mark
+(20min)
 - PPP/GitS one upping / inspiration (explain PPP/GitS!)
 - Complexity on the rise
 #+END_NOTES
@@ -394,6 +483,7 @@ Jan 17, 2014 — Jan 19, 2014
 
 * Pwn Adventure 3 Demo
 #+BEGIN_NOTES
+(30min)
 #+END_NOTES
 ** Challenges
 - Unbearable Revenge
@@ -406,6 +496,7 @@ Jan 17, 2014 — Jan 19, 2014
 
 * 3rd Party Hacks
 #+BEGIN_NOTES
+(45min)
 #+END_NOTES
 ** LD＿PRELOAD
 
