@@ -3,7 +3,7 @@
 #+Email: rusty@vector35.com, jordan@vector35.com
 #+STARTUP: showall
 
-- This repository is for the presentation Hacking Games in a Hacked Game given by Rusty Wagner and Jordan Wiens at [[infiltratecon.org/speakers.html#games][Infiltrate 2015]].
+- This repository is for the presentation Hacking Games in a Hacked Game given by Rusty Wagner and Jordan Wiens at [[http://infiltratecon.org/speakers.html#games][Infiltrate 2015]].
 - Slides were created using org-mode in [[https://www.gnu.org/software/emacs/][Emacs]] (specifically, [[https://github.com/syl20bnr/spacemacs][spacemacs]] using [[http://orgmode.org/][org-mode]] with [[https://github.com/yjwen/org-reveal][org-reveal]] which generates a [[https://github.com/hakimel/reveal.js/][reveal.js]] slide show).
 - The [[slides.org][slides]] aren't quite vanilla org-mode syntax, so GitHub's rendering isn't perfect, but you can always clone the repository and open the rendered html, or check out the version hosted on the [[http://vector35.com/HackingGames][Vector 35 website]].
 
