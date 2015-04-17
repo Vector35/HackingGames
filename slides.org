@@ -344,30 +344,6 @@ Who knows about MAXSYMLINKS? (BSD), or SYMLOOP＿PMAX (POSIX)?
 Who knows what the values are commonly defined as? (8, 40)
 #+END_NOTES
 
-*** real-world example
-[[./images/realpathstrcmp.png]]
-#+BEGIN_NOTES
-#+BEGIN_SRC C
-bool symbol__restricted_filename(const char *filename,
-				 const char *restricted_filename)
-{
-	bool restricted = false;
-
-	if (symbol_conf.kptr_restrict) {
-		char *r = realpath(filename, NULL);
-
-		if (r != NULL) {
-			restricted = strcmp(r, restricted_filename) == 0;
-			free(r);
-			return restricted;
-		}
-	}
-
-	return restricted;
-}
-#+END_SRC
-#+END_NOTES
-
 ** bound payloads / chflags
 #+BEGIN_NOTES
 A number of the same techniques Patrick mentioned yesterday in his BADA$$ OS X
