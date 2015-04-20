@@ -668,12 +668,3 @@ Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 #+BEGIN_NOTES
 Public Domain: http://en.wikipedia.org/wiki/It%27s_Got_Me_Again!
 #+END_NOTES
-
-* Bonus!
-:PROPERTIES:
-:reveal_background: ./images/MMIBH-team-photo.jpg
-:reveal_background_trans: none
-:END:
-#+BEGIN_NOTES
- We put on our robe and wizard hats
-#+END_NOTES
